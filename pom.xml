@@ -6,7 +6,10 @@
 
     <groupId>education.bert.rc</groupId>
     <artifactId>references-converter</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
+    <modules>
+        <module>temp-module</module>
+    </modules>
     <packaging>pom</packaging>
 
     <properties>
