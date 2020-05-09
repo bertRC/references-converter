@@ -28,7 +28,7 @@ public class TestFileService {
 
     @Test
     public void testWrongUploadPath() {
-        assertThrows(FileAccessException.class, () -> new FileService("X:\\test"));
+        assertThrows(FileAccessException.class, () -> new FileService("E:/X"));
     }
 
     @Test
