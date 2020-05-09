@@ -10,6 +10,7 @@
     <modules>
         <module>temp-module</module>
         <module>webapp</module>
+        <module>references-analyzer</module>
     </modules>
     <packaging>pom</packaging>
 
