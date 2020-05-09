@@ -28,11 +28,11 @@ public class TestFileService {
 
     @Test
     public void testWrongUploadPath() {
-        assertThrows(FileAccessException.class, () -> new FileService("X:/test"));
+        assertThrows(FileAccessException.class, () -> new FileService("X:\\test"));
     }
 
     @Test
     public void testWrongFile() {
-        assertThrows(FileAccessException.class, () -> fileService.readFile(""));
+        assertThrows(FileAccessException.class, () -> fileService.readFile("none"));
     }
 }
