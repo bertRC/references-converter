@@ -57,7 +57,7 @@
                     <programs>
                         <program>
                             <mainClass>${tomcat-launcher.class}</mainClass>
-                            <name>webapp</name>
+                            <id>webapp</id>
                         </program>
                     </programs>
                 </configuration>
