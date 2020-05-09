@@ -15,11 +15,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>education.bert.rc</groupId>
-            <artifactId>temp-module</artifactId>
-            <version>${temp-module.version}</version>
-        </dependency>
-        <dependency>
             <groupId>org.apache.tomcat.embed</groupId>
             <artifactId>tomcat-embed-core</artifactId>
             <version>${tomcat.version}</version>

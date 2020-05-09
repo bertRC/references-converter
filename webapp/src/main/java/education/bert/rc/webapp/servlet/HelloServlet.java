@@ -1,7 +1,5 @@
 package education.bert.rc.webapp.servlet;
 
-import education.bert.rc.temp.HelloWorld;
-
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
@@ -18,7 +16,7 @@ public class HelloServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ServletOutputStream out = resp.getOutputStream();
-        out.write(HelloWorld.sayHello().getBytes());
+        out.write("Hello World!!!".getBytes());
         out.flush();
         out.close();
     }
