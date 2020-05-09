@@ -9,6 +9,7 @@
     <version>1.0.1</version>
     <modules>
         <module>temp-module</module>
+        <module>webapp</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -21,6 +22,7 @@
         <junit-jupiter.version>5.5.1</junit-jupiter.version>
         <tomcat.version>8.5.23</tomcat.version>
         <tomcat-launcher.class>education.bert.rc.webapp.launcher.Main</tomcat-launcher.class>
+        <temp-module.version>1.0.0</temp-module.version>
     </properties>
 
     <build>
@@ -29,9 +31,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven-surefire-plugin.version}</version>
-                <configuration>
-                    <failIfNoTests>true</failIfNoTests>
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.jacoco</groupId>
