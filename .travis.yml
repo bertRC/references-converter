@@ -7,7 +7,7 @@ script:
 after_success:
   - bash <(curl -s https://codecov.io/bash)
 
-#deploy:
-#  provider: heroku
-#  api_key: $HEROKU_KEY
-#  app: new-webapp-bertrc
+deploy:
+  provider: heroku
+  api_key: $HEROKU_KEY
+  app: bert-references-converter
