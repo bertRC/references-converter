@@ -13,9 +13,6 @@ public class Analyzer {
 
     private final RegexCollection collection = new RegexCollection();
 
-    public Analyzer() {
-    }
-
     public String getLanguage(String text) {
         final BaseElement latin = new BaseElement("[A-Za-z]");
         final BaseElement cyrillic = new BaseElement("[А-Яа-я]");
