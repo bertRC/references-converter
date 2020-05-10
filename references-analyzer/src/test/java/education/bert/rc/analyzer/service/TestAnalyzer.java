@@ -27,8 +27,8 @@ public class TestAnalyzer {
         final List<Bibliography> bibliographies = analyzer.analyze(fileService.readFile("pool.txt"));
         final long duration = System.currentTimeMillis() - startTime;
 
-        bibliographies.forEach(BibColors::printlnColorize);
         System.out.println("[INFO] Analysis took " + duration + " milliseconds");
+        bibliographies.forEach(BibColors::printlnColorize);
     }
 
     @Test
