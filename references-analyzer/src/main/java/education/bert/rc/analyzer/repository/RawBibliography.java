@@ -1,6 +1,7 @@
 package education.bert.rc.analyzer.repository;
 
 import java.util.List;
+import java.util.Objects;
 
 public class RawBibliography {
 
@@ -168,5 +169,34 @@ public class RawBibliography {
                 ", otherEntry=" + otherEntry +
                 ", pageEntry=" + pageEntry +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        RawBibliography that = (RawBibliography) o;
+        return Objects.equals(text, that.text) &&
+                Objects.equals(recognized, that.recognized) &&
+                Objects.equals(prefix, that.prefix) &&
+                Objects.equals(suffix, that.suffix) &&
+                Objects.equals(title, that.title) &&
+                Objects.equals(journal, that.journal) &&
+                Objects.equals(authorGroup, that.authorGroup) &&
+                Objects.equals(year, that.year) &&
+                Objects.equals(vol, that.vol) &&
+                Objects.equals(num, that.num) &&
+                Objects.equals(other, that.other) &&
+                Objects.equals(page, that.page) &&
+                Objects.equals(authors, that.authors) &&
+                Objects.equals(volEntry, that.volEntry) &&
+                Objects.equals(numEntry, that.numEntry) &&
+                Objects.equals(otherEntry, that.otherEntry) &&
+                Objects.equals(pageEntry, that.pageEntry);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(text, recognized, prefix, suffix, title, journal, authorGroup, year, vol, num, other, page, authors, volEntry, numEntry, otherEntry, pageEntry);
     }
 }

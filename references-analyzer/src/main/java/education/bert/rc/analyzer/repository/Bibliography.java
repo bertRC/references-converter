@@ -1,6 +1,7 @@
 package education.bert.rc.analyzer.repository;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Bibliography extends RawBibliography {
 
@@ -63,5 +64,20 @@ public class Bibliography extends RawBibliography {
                 "isBook=" + isBook +
                 ", language='" + language + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Bibliography that = (Bibliography) o;
+        return isBook == that.isBook &&
+                Objects.equals(language, that.language);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), isBook, language);
     }
 }
