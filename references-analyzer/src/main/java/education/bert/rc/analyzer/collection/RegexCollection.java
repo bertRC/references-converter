@@ -137,6 +137,9 @@ public class RegexCollection {
                             page
                     ));
                 })))));
+
+        System.out.println("[INFO] Article patterns: " + articles.size());
+        System.out.println("[INFO] Book patterns: " + books.size());
     }
 
     public List<String> getWords() {
