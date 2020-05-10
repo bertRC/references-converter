@@ -6,6 +6,7 @@ import education.bert.rc.analyzer.repository.Bibliography;
 import education.bert.rc.analyzer.repository.Entry;
 import education.bert.rc.analyzer.repository.StringSegment;
 import education.bert.rc.analyzer.utils.console.BibColors;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ public class TestAnalyzer {
     private final Analyzer analyzer = new Analyzer();
     private final FileService fileService = new FileService("testUpload");
 
+    @Disabled
     @Test
     public void testWithoutAssertions() {
         final long startTime = System.currentTimeMillis();
