@@ -32,11 +32,14 @@ public class RegexCollection {
     private final List<BibElement> articles = new ArrayList<>();
     private final List<BibElement> books = new ArrayList<>();
 
+    private final String dash = "[-–]";
+
     public RegexCollection() {
         words.add(new BaseElement("\\b[A-ZА-Яa-zа-я]+\\b"));
 
         words.forEach(word -> {
             titles.add(new BaseGroup("(" + word + "\\s*)*" + word, word));
+            titles.add(new BaseGroup("(" + word + "\\s*(" + dash + "\\s*)?)*" + word, word));
 
             journals.add(new BaseGroup("(" + word + "\\.?\\s*)*" + word + "\\.?", word));
         });
@@ -79,7 +82,7 @@ public class RegexCollection {
 
         pageKeys.add(new BaseElement("\\b[PС]\\."));
 
-        pageValues.add(new BaseElement("\\b\\d+-\\d+\\b"));
+        pageValues.add(new BaseElement("\\b\\d+" + dash + "\\d+\\b"));
 
         pageKeys.forEach(pageKey -> pageValues.forEach(pageValue -> {
             pages.add(new EntryElement(pageKey + "\\s*" + pageValue + "\\.?", pageKey, pageValue));
@@ -95,8 +98,20 @@ public class RegexCollection {
                     articles.add(new BibElement(
                             secondName + ",\\s*" + initialGroup + "\\s*/\\s*(?<title>" + title +
                                     ")\\s*/\\s*(?<authorGroup>" + authorGroup + ")\\s*//\\s*(?<journal>" + journal +
-                                    ")\\s*-\\s*(?<year>" + year + ")\\.\\s*-\\s*(?<vol>" + vol +
-                                    ")\\s*-\\s*(?<page>" + page + ")",
+                                    ")\\s*" + dash + "\\s*(?<year>" + year + ")\\.\\s*" + dash + "\\s*(?<vol>" + vol +
+                                    ")\\s*" + dash + "\\s*(?<page>" + page + ")",
+                            title,
+                            journal,
+                            authorGroup,
+                            year,
+                            vol,
+                            null,
+                            null,
+                            page
+                    ));
+                    articles.add(new BibElement(
+                            "(?<authorGroup>" + authorGroup + ")\\s*(?<year>" + year + ")\\s*(?<title>" + title +
+                                    ")\\s+(?<journal>" + journal + ")\\s*(?<vol>" + vol + ")\\s+(?<page>" + page + ")",
                             title,
                             journal,
                             authorGroup,
