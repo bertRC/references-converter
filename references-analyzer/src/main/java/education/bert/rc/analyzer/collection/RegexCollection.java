@@ -63,7 +63,7 @@ public class RegexCollection {
 
         years.add(new BaseElement("\\b[1-2]\\d{3}\\b"));
 
-        volKeys.add(new BaseElement("\\bV\\."));
+        volKeys.add(new BaseElement("\\b[VТ]\\."));
 
         volValues.add(new BaseElement("\\b\\d+\\b"));
 
@@ -77,7 +77,7 @@ public class RegexCollection {
         //TODO: numKeys, numValues, nums
         //TODO: otherKeys, otherValues, others
 
-        pageKeys.add(new BaseElement("\\bP\\."));
+        pageKeys.add(new BaseElement("\\b[PС]\\."));
 
         pageValues.add(new BaseElement("\\b\\d+-\\d+\\b"));
 
