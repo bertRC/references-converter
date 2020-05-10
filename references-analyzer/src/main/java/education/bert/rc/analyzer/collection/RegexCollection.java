@@ -7,9 +7,9 @@ import java.util.List;
 
 public class RegexCollection {
 
-    private final List<BaseElement> words = new ArrayList<>();
-    private final List<BaseGroup> titles = new ArrayList<>();
-    private final List<BaseGroup> journals = new ArrayList<>();
+    private final List<String> words = new ArrayList<>();
+    private final List<BaseElement> titles = new ArrayList<>();
+    private final List<BaseElement> journals = new ArrayList<>();
     private final List<BaseElement> initials = new ArrayList<>();
     private final List<BaseGroup> initialGroups = new ArrayList<>();
     private final List<BaseElement> secondNames = new ArrayList<>();
@@ -35,13 +35,13 @@ public class RegexCollection {
     private final String dash = "[-–]";
 
     public RegexCollection() {
-        words.add(new BaseElement("\\b[A-ZА-Яa-zа-я]+\\b"));
+        words.add("\\b[A-ZА-Яa-zа-я]+\\b");
 
         words.forEach(word -> {
-            titles.add(new BaseGroup("(" + word + "\\s*)*" + word, word));
-            titles.add(new BaseGroup("(" + word + "\\s*(" + dash + "\\s*)?)*" + word, word));
+            titles.add(new BaseElement("(" + word + "\\s*)*" + word));
+            titles.add(new BaseElement("(" + word + "\\s*(" + dash + "\\s*)?)*" + word));
 
-            journals.add(new BaseGroup("(" + word + "\\.?\\s*)*" + word + "\\.?", word));
+            journals.add(new BaseElement("(" + word + "\\.?\\s*)*" + word + "\\.?"));
         });
 
         initials.add(new BaseElement("\\b[A-ZА-Я]\\b"));
@@ -139,15 +139,15 @@ public class RegexCollection {
                 })))));
     }
 
-    public List<BaseElement> getWords() {
+    public List<String> getWords() {
         return words;
     }
 
-    public List<BaseGroup> getTitles() {
+    public List<BaseElement> getTitles() {
         return titles;
     }
 
-    public List<BaseGroup> getJournals() {
+    public List<BaseElement> getJournals() {
         return journals;
     }
 
