@@ -96,7 +96,7 @@ public class RegexCollection {
                     final BaseGroup initialGroup = authorGroup.getAuthor().getInitialGroup();
                     final BaseElement secondName = authorGroup.getAuthor().getSecondName();
                     articles.add(new BibElement(
-                            secondName + ",\\s*" + initialGroup + "\\s*/\\s*(?<title>" + title +
+                            secondName + ",\\s*" + initialGroup + "(\\s*/)?\\s*(?<title>" + title +
                                     ")\\s*/\\s*(?<authorGroup>" + authorGroup + ")\\s*//\\s*(?<journal>" + journal +
                                     ")\\s*" + dash + "\\s*(?<year>" + year + ")\\.\\s*" + dash + "\\s*(?<vol>" + vol +
                                     ")\\s*" + dash + "\\s*(?<page>" + page + ")",

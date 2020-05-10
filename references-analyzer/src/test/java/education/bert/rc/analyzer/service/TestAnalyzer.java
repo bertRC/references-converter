@@ -1,10 +1,7 @@
 package education.bert.rc.analyzer.service;
 
 import education.bert.rc.analyzer.file.service.FileService;
-import education.bert.rc.analyzer.repository.Author;
-import education.bert.rc.analyzer.repository.Bibliography;
-import education.bert.rc.analyzer.repository.Entry;
-import education.bert.rc.analyzer.repository.StringSegment;
+import education.bert.rc.analyzer.repository.*;
 import education.bert.rc.analyzer.utils.console.BibColors;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -12,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -27,6 +25,10 @@ public class TestAnalyzer {
         final List<Bibliography> bibliographies = analyzer.analyze(fileService.readFile("pool.txt"));
         final long duration = System.currentTimeMillis() - startTime;
 
+        final long emptyCount = bibliographies.stream().filter(RawBibliography::isEmpty).count();
+        final int totalCount = bibliographies.size();
+        final long recognition = 100 * (totalCount - emptyCount) / totalCount;
+        System.out.println("[INFO] Recognition: " + recognition + "%");
         System.out.println("[INFO] Analysis took " + duration + " milliseconds");
         bibliographies.forEach(BibColors::printlnColorize);
     }
