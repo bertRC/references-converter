@@ -119,8 +119,8 @@ public class RegexCollection {
                     ));
                     titles.forEach(title -> {
                         articles.add(new BibElement(
-                                "(?<authorGroup>" + authorGroup + ")\\s*(?<year>" + year + ")\\s*(?<title>" +
-                                        title + ")\\s+(?<journal>" + journal + ")\\s*(?<vol>" + vol + ")\\s+(?<page>" +
+                                "(?<authorGroup>" + authorGroup + ")\\s+(?<year>" + year + ")\\s+(?<title>" +
+                                        title + ")\\s+(?<journal>" + journal + ")\\s+(?<vol>" + vol + ")\\s+(?<page>" +
                                         page + ")",
                                 title,
                                 journal,
