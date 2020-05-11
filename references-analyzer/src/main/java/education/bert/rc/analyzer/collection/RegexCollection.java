@@ -77,7 +77,14 @@ public class RegexCollection {
             vols.add(new EntryElement(volValue.toString(), new BaseElement(""), volValue));
         });
 
-        //TODO: numKeys, numValues, nums
+        numKeys.add(new BaseElement("№"));
+
+        numValues.add(new BaseElement("\\b\\d+\\b"));
+
+        numKeys.forEach(numKey -> numValues.forEach(numValue -> {
+            nums.add(new EntryElement(numKey + "\\s*" + numValue + "\\.?", numKey, numValue));
+        }));
+
         //TODO: otherKeys, otherValues, others
 
         pageKeys.add(new BaseElement("\\b[PС]\\."));
@@ -91,37 +98,6 @@ public class RegexCollection {
             pages.add(new EntryElement(pageValue.toString(), new BaseElement(""), pageValue));
         });
 
-        titles.forEach(title -> journals.forEach(journal -> authorGroups.forEach(authorGroup -> years.forEach(year ->
-                vols.forEach(vol -> pages.forEach(page -> {
-                    final BaseGroup initialGroup = authorGroup.getAuthor().getInitialGroup();
-                    final BaseElement secondName = authorGroup.getAuthor().getSecondName();
-                    articles.add(new BibElement(
-                            "(" + secondName + ",\\s*" + initialGroup + "(\\s*/)?\\s*)?(?<title>" + title +
-                                    ")\\s*/\\s*(?<authorGroup>" + authorGroup + ")\\s*//\\s*(?<journal>" + journal +
-                                    ")\\s*" + dash + "\\s*(?<year>" + year + ")\\.\\s*" + dash + "\\s*(?<vol>" + vol +
-                                    ")\\s*" + dash + "\\s*(?<page>" + page + ")",
-                            title,
-                            journal,
-                            authorGroup,
-                            year,
-                            vol,
-                            null,
-                            null,
-                            page
-                    ));
-                    articles.add(new BibElement(
-                            "(?<authorGroup>" + authorGroup + ")\\s*(?<year>" + year + ")\\s*(?<title>" + title +
-                                    ")\\s+(?<journal>" + journal + ")\\s*(?<vol>" + vol + ")\\s+(?<page>" + page + ")",
-                            title,
-                            journal,
-                            authorGroup,
-                            year,
-                            vol,
-                            null,
-                            null,
-                            page
-                    ));
-                }))))));
         journals.forEach(journal -> authorGroups.forEach(authorGroup -> years.forEach(year -> vols.forEach(vol ->
                 pages.forEach(page -> {
                     articles.add(new BibElement(
@@ -136,6 +112,40 @@ public class RegexCollection {
                             null,
                             page
                     ));
+                    titles.forEach(title -> {
+                        articles.add(new BibElement(
+                                "(?<authorGroup>" + authorGroup + ")\\s*(?<year>" + year + ")\\s*(?<title>" +
+                                        title + ")\\s+(?<journal>" + journal + ")\\s*(?<vol>" + vol + ")\\s+(?<page>" +
+                                        page + ")",
+                                title,
+                                journal,
+                                authorGroup,
+                                year,
+                                vol,
+                                null,
+                                null,
+                                page
+                        ));
+                        nums.forEach(num -> {
+                            final BaseGroup initialGroup = authorGroup.getAuthor().getInitialGroup();
+                            final BaseElement secondName = authorGroup.getAuthor().getSecondName();
+                            articles.add(new BibElement(
+                                    "(" + secondName + ",\\s*" + initialGroup + "(\\s*/)?\\s*)?(?<title>" + title
+                                            + ")\\s*/\\s*(?<authorGroup>" + authorGroup + ")\\s*//\\s*(?<journal>" +
+                                            journal + ")\\s*" + dash + "\\s*(?<year>" + year + ")\\.\\s*" + dash +
+                                            "\\s*(?<vol>" + vol + ")\\s*(" + dash + "\\s*(?<num>" + num + ")\\s*)?" +
+                                            dash + "\\s*(?<page>" + page + ")",
+                                    title,
+                                    journal,
+                                    authorGroup,
+                                    year,
+                                    vol,
+                                    num,
+                                    null,
+                                    page
+                            ));
+                        });
+                    });
                 })))));
 
         System.out.println("[INFO] Article patterns: " + articles.size());
