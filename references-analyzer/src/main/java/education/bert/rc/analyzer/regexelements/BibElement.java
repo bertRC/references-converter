@@ -117,13 +117,15 @@ public class BibElement extends BaseElement {
 
     private StringSegment extractGroup(Matcher matcher, String groupName) {
         try {
-            return new StringSegment(matcher.group(groupName), matcher.start(groupName), matcher.end(groupName));
+            if (matcher.group(groupName) != null) {
+                return new StringSegment(matcher.group(groupName), matcher.start(groupName), matcher.end(groupName));
+            }
         } catch (IllegalArgumentException e) {
             //TODO: print error message
 //            System.out.println("[Warning]: " + e.getMessage());
 //            e.printStackTrace();
-            return null;
         }
+        return null;
     }
 
     private StringSegment extractGroup(Matcher matcher) {
