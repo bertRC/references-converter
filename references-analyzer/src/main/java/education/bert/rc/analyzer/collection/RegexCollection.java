@@ -7,7 +7,8 @@ import java.util.List;
 
 public class RegexCollection {
 
-    private final List<String> words = new ArrayList<>();
+    private final List<String> titleWords = new ArrayList<>();
+    private final List<String> journalWords = new ArrayList<>();
     private final List<BaseElement> titles = new ArrayList<>();
     private final List<BaseElement> journals = new ArrayList<>();
     private final List<BaseElement> initials = new ArrayList<>();
@@ -35,12 +36,16 @@ public class RegexCollection {
     private final String dash = "[-–]";
 
     public RegexCollection() {
-        words.add("\\b[A-ZА-Яa-zа-я]+\\b");
+        titleWords.add("\\b[A-ZА-Яa-zа-я]+\\b");
 
-        words.forEach(word -> {
+        journalWords.add("\\b[A-ZА-Яa-zа-я]+\\b");
+
+        titleWords.forEach(word -> {
             titles.add(new BaseElement("(" + word + "\\s*)*" + word));
             titles.add(new BaseElement("(" + word + "\\s*(" + dash + "\\s*)?)*" + word));
+        });
 
+        journalWords.forEach(word -> {
             journals.add(new BaseElement("(" + word + "\\.?\\s*)*" + word + "\\.?"));
         });
 
@@ -152,8 +157,12 @@ public class RegexCollection {
         System.out.println("[INFO] Book patterns: " + books.size());
     }
 
-    public List<String> getWords() {
-        return words;
+    public List<String> getTitleWords() {
+        return titleWords;
+    }
+
+    public List<String> getJournalWords() {
+        return journalWords;
     }
 
     public List<BaseElement> getTitles() {
