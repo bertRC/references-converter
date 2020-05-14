@@ -41,18 +41,17 @@ public class RegexCollection {
         journalWords.add("\\b[A-ZА-Яa-zа-я]+\\b");
 
         titleWords.forEach(word -> {
-            titles.add(new BaseElement("(" + word + "\\s*(" + dash + "\\s*)?)*" + word));
+            titles.add(new BaseElement("(?:" + word + "\\s*(?:" + dash + "\\s*)?)*" + word));
         });
 
         journalWords.forEach(word -> {
-            journals.add(new BaseElement("(" + word + "\\.?\\s*)*" + word + "\\.?"));
+            journals.add(new BaseElement("(?:" + word + "\\.?\\s*)*" + word + "\\.?"));
         });
 
         initials.add(new BaseElement("\\b[A-ZА-Я]\\b"));
 
         initials.forEach(initial -> {
-            initialGroups.add(new BaseGroup("(" + initial + "\\.\\s*)?" + initial + "\\.", initial));
-            initialGroups.add(new BaseGroup("(" + initial + "\\s*)?" + initial, initial));
+            initialGroups.add(new BaseGroup("(?:" + initial + "\\.?\\s*)?" + initial + "\\.?", initial));
         });
 
         secondNames.add(new BaseElement("\\b[A-ZА-Я][a-zа-я]+\\b"));
@@ -63,9 +62,8 @@ public class RegexCollection {
         }));
 
         authors.forEach(author -> {
-            authorGroups.add(new AuthorGroup("(" + author + ",\\s*)*" + author, author));
-            authorGroups.add(new AuthorGroup("(" + author + ",\\s*)*" + author + "\\s+and\\s+" + author, author));
-            authorGroups.add(new AuthorGroup("(" + author + ",\\s*)*" + author + "\\s+и\\s+" + author, author));
+            authorGroups.add(new AuthorGroup("(?:" + author + ",\\s*)*" + author + "(?:\\s+(?:and)?и?\\s+" +
+                    author + ")?", author));
         });
 
         years.add(new BaseElement("\\b[1-2]\\d{3}\\b"));
@@ -75,11 +73,8 @@ public class RegexCollection {
         volValues.add(new BaseElement("\\b\\d+\\b"));
 
         volKeys.forEach(volKey -> volValues.forEach(volValue -> {
-            vols.add(new EntryElement(volKey + "\\s*" + volValue + "\\.?", volKey, volValue));
+            vols.add(new EntryElement("(?:" + volKey + "\\s*)?" + volValue + "\\.?", volKey, volValue));
         }));
-        volValues.forEach(volValue -> {
-            vols.add(new EntryElement(volValue.toString(), new BaseElement(""), volValue));
-        });
 
         numKeys.add(new BaseElement("№"));
 
@@ -96,17 +91,14 @@ public class RegexCollection {
         pageValues.add(new BaseElement("\\b\\d+" + dash + "\\d+\\b"));
 
         pageKeys.forEach(pageKey -> pageValues.forEach(pageValue -> {
-            pages.add(new EntryElement(pageKey + "\\s*" + pageValue + "\\.?", pageKey, pageValue));
+            pages.add(new EntryElement("(?:" + pageKey + "\\s*)?" + pageValue + "\\.?", pageKey, pageValue));
         }));
-        pageValues.forEach(pageValue -> {
-            pages.add(new EntryElement(pageValue.toString(), new BaseElement(""), pageValue));
-        });
 
         journals.forEach(journal -> authorGroups.forEach(authorGroup -> years.forEach(year -> vols.forEach(vol ->
                 pages.forEach(page -> titles.forEach(title -> {
                             articles.add(new BibElement(
-                                    "(?<authorGroup>" + authorGroup + ")\\s+(?<year>" + year + ")(\\s+(?<title>" +
-                                            title + "))?\\s+(?<journal>" + journal + ")\\s+(?<vol>" + vol +
+                                    "(?<authorGroup>" + authorGroup + ")\\s+(?<year>" + year + ")(?:\\s+(?<title>"
+                                            + title + "))?\\s+(?<journal>" + journal + ")\\s+(?<vol>" + vol +
                                             ")\\s+(?<page>" + page + ")",
                                     title,
                                     journal,
@@ -121,10 +113,10 @@ public class RegexCollection {
                                 final BaseGroup initialGroup = authorGroup.getAuthor().getInitialGroup();
                                 final BaseElement secondName = authorGroup.getAuthor().getSecondName();
                                 articles.add(new BibElement(
-                                        "(" + secondName + ",\\s*" + initialGroup + "(\\s*/)?\\s*)?(?<title>" +
-                                                title + ")\\s*/\\s*(?<authorGroup>" + authorGroup +
+                                        "(?:" + secondName + ",\\s*" + initialGroup + "(?:\\s*/)?\\s*)?(?<title>"
+                                                + title + ")\\s*/\\s*(?<authorGroup>" + authorGroup +
                                                 ")\\s*//\\s*(?<journal>" + journal + ")\\s*" + dash + "\\s*(?<year>" +
-                                                year + ")\\.\\s*" + dash + "\\s*(?<vol>" + vol + ")\\s*(" + dash +
+                                                year + ")\\.\\s*" + dash + "\\s*(?<vol>" + vol + ")\\s*(?:" + dash +
                                                 "\\s*(?<num>" + num + ")\\s*)?" + dash + "\\s*(?<page>" + page + ")",
                                         title,
                                         journal,
