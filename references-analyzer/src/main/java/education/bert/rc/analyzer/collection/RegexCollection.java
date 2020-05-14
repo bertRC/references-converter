@@ -41,7 +41,6 @@ public class RegexCollection {
         journalWords.add("\\b[A-ZА-Яa-zа-я]+\\b");
 
         titleWords.forEach(word -> {
-            titles.add(new BaseElement("(" + word + "\\s*)*" + word));
             titles.add(new BaseElement("(" + word + "\\s*(" + dash + "\\s*)?)*" + word));
         });
 
