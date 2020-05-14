@@ -33,6 +33,9 @@ public class Analyzer {
             if (rawBibliography.getCoverage() > coverage) {
                 coverage = rawBibliography.getCoverage();
                 result = new Bibliography(rawBibliography, false, language);
+                if (coverage == text.length()) {
+                    return result;
+                }
             }
         }
         for (BibElement bibElement : collection.getBooks()) {
@@ -40,6 +43,9 @@ public class Analyzer {
             if (rawBibliography.getCoverage() > coverage) {
                 coverage = rawBibliography.getCoverage();
                 result = new Bibliography(rawBibliography, true, language);
+                if (coverage == text.length()) {
+                    return result;
+                }
             }
         }
         return result;
