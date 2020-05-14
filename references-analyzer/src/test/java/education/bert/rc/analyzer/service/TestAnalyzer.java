@@ -27,7 +27,9 @@ public class TestAnalyzer {
         final long emptyCount = bibliographies.stream().filter(RawBibliography::isEmpty).count();
         final int totalCount = bibliographies.size();
         final long recognition = 100 * (totalCount - emptyCount) / totalCount;
+        final Integer symbolCoverage = bibliographies.stream().map(RawBibliography::getCoverage).reduce(0, Integer::sum);
         System.out.println("[INFO] Recognized: " + (totalCount - emptyCount) + "/" + totalCount);
+        System.out.println("[INFO] Symbols recognized: " + symbolCoverage);
         System.out.println("[INFO] Recognition: " + recognition + "%");
         System.out.println("[INFO] Analysis took " + duration + " milliseconds");
         bibliographies.forEach(BibColors::printlnColorize);
