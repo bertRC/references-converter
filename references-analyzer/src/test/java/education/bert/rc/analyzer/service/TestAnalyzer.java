@@ -1,10 +1,7 @@
 package education.bert.rc.analyzer.service;
 
 import education.bert.rc.analyzer.file.service.FileService;
-import education.bert.rc.analyzer.repository.Author;
-import education.bert.rc.analyzer.repository.Bibliography;
-import education.bert.rc.analyzer.repository.Entry;
-import education.bert.rc.analyzer.repository.StringSegment;
+import education.bert.rc.analyzer.repository.*;
 import education.bert.rc.analyzer.utils.console.BibColors;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -27,8 +24,15 @@ public class TestAnalyzer {
         final List<Bibliography> bibliographies = analyzer.analyze(fileService.readFile("pool.txt"));
         final long duration = System.currentTimeMillis() - startTime;
 
-        bibliographies.forEach(BibColors::printlnColorize);
+        final long emptyCount = bibliographies.stream().filter(RawBibliography::isEmpty).count();
+        final int totalCount = bibliographies.size();
+        final long recognition = 100 * (totalCount - emptyCount) / totalCount;
+        final Integer symbolCoverage = bibliographies.stream().map(RawBibliography::getCoverage).reduce(0, Integer::sum);
+        System.out.println("[INFO] Recognized: " + (totalCount - emptyCount) + "/" + totalCount);
+        System.out.println("[INFO] Symbols recognized: " + symbolCoverage);
+        System.out.println("[INFO] Recognition: " + recognition + "%");
         System.out.println("[INFO] Analysis took " + duration + " milliseconds");
+        bibliographies.forEach(BibColors::printlnColorize);
     }
 
     @Test

@@ -12,8 +12,8 @@ import java.util.regex.Matcher;
 
 public class BibElement extends BaseElement {
 
-    private final BaseGroup title;
-    private final BaseGroup journal;
+    private final BaseElement title;
+    private final BaseElement journal;
     private final AuthorGroup authorGroup;
     private final BaseElement year;
     private final EntryElement vol;
@@ -21,7 +21,7 @@ public class BibElement extends BaseElement {
     private final EntryElement other;
     private final EntryElement page;
 
-    public BibElement(String regex, BaseGroup title, BaseGroup journal, AuthorGroup authorGroup, BaseElement year,
+    public BibElement(String regex, BaseElement title, BaseElement journal, AuthorGroup authorGroup, BaseElement year,
                       EntryElement vol, EntryElement num, EntryElement other, EntryElement page) {
         super(regex);
         this.title = title;
@@ -117,24 +117,26 @@ public class BibElement extends BaseElement {
 
     private StringSegment extractGroup(Matcher matcher, String groupName) {
         try {
-            return new StringSegment(matcher.group(groupName), matcher.start(groupName), matcher.end(groupName));
+            if (matcher.group(groupName) != null) {
+                return new StringSegment(matcher.group(groupName), matcher.start(groupName), matcher.end(groupName));
+            }
         } catch (IllegalArgumentException e) {
             //TODO: print error message
 //            System.out.println("[Warning]: " + e.getMessage());
 //            e.printStackTrace();
-            return null;
         }
+        return null;
     }
 
     private StringSegment extractGroup(Matcher matcher) {
         return new StringSegment(matcher.group(), matcher.start(), matcher.end());
     }
 
-    public BaseGroup getTitle() {
+    public BaseElement getTitle() {
         return title;
     }
 
-    public BaseGroup getJournal() {
+    public BaseElement getJournal() {
         return journal;
     }
 
