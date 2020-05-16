@@ -1,6 +1,5 @@
 package education.bert.rc.analyzer.regexelements;
 
-import education.bert.rc.utils.list.ListUtil;
 import education.bert.rc.utils.repository.Author;
 import education.bert.rc.utils.repository.Entry;
 import education.bert.rc.utils.repository.RawBibliography;
@@ -48,10 +47,8 @@ public class BibElement extends BaseElement {
             if (authorGroup != null) {
                 final List<String> authorStrings = this.authorGroup.getAuthor().find(authorGroup.toString());
                 authorStrings.forEach(s -> {
-                    final String secondName =
-                            ListUtil.getFirst(this.authorGroup.getAuthor().getSecondName().find(s), "");
-                    final String initialGroup =
-                            ListUtil.getFirst(this.authorGroup.getAuthor().getInitialGroup().find(s), "");
+                    final String secondName = this.authorGroup.getAuthor().getSecondName().find(s).get(0);
+                    final String initialGroup = this.authorGroup.getAuthor().getInitialGroup().find(s).get(0);
                     final List<String> initials = this.authorGroup.getAuthor().getInitialGroup().getBaseElement()
                             .find(initialGroup);
                     authors.add(new Author(secondName, initials));
@@ -60,29 +57,29 @@ public class BibElement extends BaseElement {
 
             Entry volEntry = null;
             if (vol != null) {
-                final String volKey = ListUtil.getFirst(this.vol.getKey().find(vol.toString()), "");
-                final String volValue = ListUtil.getFirst(this.vol.getValue().find(vol.toString()), "");
+                final String volKey = this.vol.getKey().find(vol.toString()).get(0);
+                final String volValue = this.vol.getValue().find(vol.toString()).get(0);
                 volEntry = new Entry(volKey, volValue);
             }
 
             Entry numEntry = null;
             if (num != null) {
-                final String numKey = ListUtil.getFirst(this.num.getKey().find(num.toString()), "");
-                final String numValue = ListUtil.getFirst(this.num.getValue().find(num.toString()), "");
+                final String numKey = this.num.getKey().find(num.toString()).get(0);
+                final String numValue = this.num.getValue().find(num.toString()).get(0);
                 numEntry = new Entry(numKey, numValue);
             }
 
             Entry otherEntry = null;
             if (other != null) {
-                final String otherKey = ListUtil.getFirst(this.other.getKey().find(other.toString()), "");
-                final String otherValue = ListUtil.getFirst(this.other.getValue().find(other.toString()), "");
+                final String otherKey = this.other.getKey().find(other.toString()).get(0);
+                final String otherValue = this.other.getValue().find(other.toString()).get(0);
                 otherEntry = new Entry(otherKey, otherValue);
             }
 
             Entry pageEntry = null;
             if (page != null) {
-                final String pageKey = ListUtil.getFirst(this.page.getKey().find(page.toString()), "");
-                final String pageValue = ListUtil.getFirst(this.page.getValue().find(page.toString()), "");
+                final String pageKey = this.page.getKey().find(page.toString()).get(0);
+                final String pageValue = this.page.getValue().find(page.toString()).get(0);
                 pageEntry = new Entry(pageKey, pageValue);
             }
 

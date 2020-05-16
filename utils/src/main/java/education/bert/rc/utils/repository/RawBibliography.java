@@ -55,7 +55,7 @@ public class RawBibliography {
     }
 
     public boolean isEmpty() {
-        return recognized == null || recognized.toString() == null || recognized.toString().isEmpty();
+        return recognized == null || recognized.getText() == null || recognized.getText().isEmpty();
     }
 
     public int getCoverage() {

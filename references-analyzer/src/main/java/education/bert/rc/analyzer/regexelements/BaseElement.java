@@ -22,6 +22,9 @@ public class BaseElement {
         while (matcher.find()) {
             results.add(matcher.group());
         }
+        if (results.isEmpty()) {
+            results.add("");
+        }
         return results;
     }
 
