@@ -1,6 +1,7 @@
 package education.bert.rc.analyzer.collection;
 
 import education.bert.rc.analyzer.regexelements.*;
+import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,14 +10,14 @@ public class RegexCollection {
 
     private final List<String> titleWords = new ArrayList<>();
     private final List<String> journalWords = new ArrayList<>();
-    private final List<BaseElement> titles = new ArrayList<>();
-    private final List<BaseElement> journals = new ArrayList<>();
+    private final List<String> titles = new ArrayList<>();
+    private final List<String> journals = new ArrayList<>();
     private final List<BaseElement> initials = new ArrayList<>();
     private final List<BaseGroup> initialGroups = new ArrayList<>();
     private final List<BaseElement> secondNames = new ArrayList<>();
     private final List<AuthorElement> authors = new ArrayList<>();
     private final List<AuthorGroup> authorGroups = new ArrayList<>();
-    private final List<BaseElement> years = new ArrayList<>();
+    private final List<String> years = new ArrayList<>();
     private final List<BaseElement> volKeys = new ArrayList<>();
     private final List<BaseElement> volValues = new ArrayList<>();
     private final List<EntryElement> vols = new ArrayList<>();
@@ -30,7 +31,9 @@ public class RegexCollection {
     private final List<BaseElement> pageValues = new ArrayList<>();
     private final List<EntryElement> pages = new ArrayList<>();
 
+    @Getter
     private final List<BibElement> articles = new ArrayList<>();
+    @Getter
     private final List<BibElement> books = new ArrayList<>();
 
     private final String dash = "[-–]";
@@ -41,11 +44,11 @@ public class RegexCollection {
         journalWords.add("\\b[A-ZА-Яa-zа-я]+\\b");
 
         titleWords.forEach(word -> {
-            titles.add(new BaseElement("(?:" + word + "\\s*(?:" + dash + "\\s*)?)*" + word));
+            titles.add("(?:" + word + "\\s*(?:" + dash + "\\s*)?)*" + word);
         });
 
         journalWords.forEach(word -> {
-            journals.add(new BaseElement("(?:" + word + "\\.?\\s*)*" + word + "\\.?"));
+            journals.add("(?:" + word + "\\.?\\s*)*" + word + "\\.?");
         });
 
         initials.add(new BaseElement("\\b[A-ZА-Я]\\b"));
@@ -66,7 +69,7 @@ public class RegexCollection {
                     author + ")?", author));
         });
 
-        years.add(new BaseElement("\\b[1-2]\\d{3}\\b"));
+        years.add("\\b[1-2]\\d{3}\\b");
 
         volKeys.add(new BaseElement("\\b[VТ]\\."));
 
@@ -100,10 +103,7 @@ public class RegexCollection {
                                     "(?<authorGroup>" + authorGroup + ")\\s+(?<year>" + year + ")(?:\\s+(?<title>"
                                             + title + "))?\\s+(?<journal>" + journal + ")\\s+(?<vol>" + vol +
                                             ")\\s+(?<page>" + page + ")",
-                                    title,
-                                    journal,
                                     authorGroup,
-                                    year,
                                     vol,
                                     null,
                                     null,
@@ -118,10 +118,7 @@ public class RegexCollection {
                                                 ")\\s*//\\s*(?<journal>" + journal + ")\\s*" + dash + "\\s*(?<year>" +
                                                 year + ")\\.\\s*" + dash + "\\s*(?<vol>" + vol + ")\\s*(?:" + dash +
                                                 "\\s*(?<num>" + num + ")\\s*)?" + dash + "\\s*(?<page>" + page + ")",
-                                        title,
-                                        journal,
                                         authorGroup,
-                                        year,
                                         vol,
                                         num,
                                         null,
@@ -133,101 +130,5 @@ public class RegexCollection {
 
         System.out.println("[INFO] Article patterns: " + articles.size());
         System.out.println("[INFO] Book patterns: " + books.size());
-    }
-
-    public List<String> getTitleWords() {
-        return titleWords;
-    }
-
-    public List<String> getJournalWords() {
-        return journalWords;
-    }
-
-    public List<BaseElement> getTitles() {
-        return titles;
-    }
-
-    public List<BaseElement> getJournals() {
-        return journals;
-    }
-
-    public List<BaseElement> getInitials() {
-        return initials;
-    }
-
-    public List<BaseGroup> getInitialGroups() {
-        return initialGroups;
-    }
-
-    public List<BaseElement> getSecondNames() {
-        return secondNames;
-    }
-
-    public List<AuthorElement> getAuthors() {
-        return authors;
-    }
-
-    public List<AuthorGroup> getAuthorGroups() {
-        return authorGroups;
-    }
-
-    public List<BaseElement> getYears() {
-        return years;
-    }
-
-    public List<BaseElement> getVolKeys() {
-        return volKeys;
-    }
-
-    public List<BaseElement> getVolValues() {
-        return volValues;
-    }
-
-    public List<EntryElement> getVols() {
-        return vols;
-    }
-
-    public List<BaseElement> getNumKeys() {
-        return numKeys;
-    }
-
-    public List<BaseElement> getNumValues() {
-        return numValues;
-    }
-
-    public List<EntryElement> getNums() {
-        return nums;
-    }
-
-    public List<BaseElement> getOtherKeys() {
-        return otherKeys;
-    }
-
-    public List<BaseElement> getOtherValues() {
-        return otherValues;
-    }
-
-    public List<EntryElement> getOthers() {
-        return others;
-    }
-
-    public List<BaseElement> getPageKeys() {
-        return pageKeys;
-    }
-
-    public List<BaseElement> getPageValues() {
-        return pageValues;
-    }
-
-    public List<EntryElement> getPages() {
-        return pages;
-    }
-
-    public List<BibElement> getArticles() {
-        return articles;
-    }
-
-    public List<BibElement> getBooks() {
-        return books;
     }
 }
