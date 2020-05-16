@@ -104,10 +104,10 @@ public class TestAnalyzer {
                         new Author("Мобо", Arrays.asList("Ф", "Р")),
                         new Author("Венхофф", Arrays.asList("М", "А"))
                 ),
-                new Entry("Т.", "14"),
+                new Entry("Т", "14"),
                 null,
                 null,
-                new Entry("С.", "3397-3503"),
+                new Entry("С", "3397-3503"),
                 false,
                 "cyrillic"
         ));

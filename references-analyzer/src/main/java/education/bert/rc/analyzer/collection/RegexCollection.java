@@ -71,12 +71,12 @@ public class RegexCollection {
 
         years.add("\\b[1-2]\\d{3}\\b");
 
-        volKeys.add(new BaseElement("\\b[VТ]\\."));
+        volKeys.add(new BaseElement("\\b[VТ]\\b"));
 
         volValues.add(new BaseElement("\\b\\d+\\b"));
 
         volKeys.forEach(volKey -> volValues.forEach(volValue -> {
-            vols.add(new EntryElement("(?:" + volKey + "\\s*)?" + volValue + "\\.?", volKey, volValue));
+            vols.add(new EntryElement("(?:" + volKey + "\\.\\s*)?" + volValue + "\\.?", volKey, volValue));
         }));
 
         numKeys.add(new BaseElement("№"));
@@ -89,12 +89,12 @@ public class RegexCollection {
 
         //TODO: otherKeys, otherValues, others
 
-        pageKeys.add(new BaseElement("\\b[PС]\\."));
+        pageKeys.add(new BaseElement("\\b[PС]\\b"));
 
         pageValues.add(new BaseElement("\\b\\d+" + dash + "\\d+\\b"));
 
         pageKeys.forEach(pageKey -> pageValues.forEach(pageValue -> {
-            pages.add(new EntryElement("(?:" + pageKey + "\\s*)?" + pageValue + "\\.?", pageKey, pageValue));
+            pages.add(new EntryElement("(?:" + pageKey + "\\.\\s*)?" + pageValue + "\\.?", pageKey, pageValue));
         }));
 
         journals.forEach(journal -> authorGroups.forEach(authorGroup -> years.forEach(year -> vols.forEach(vol ->
