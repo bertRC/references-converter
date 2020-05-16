@@ -7,8 +7,8 @@ import lombok.ToString;
 import java.util.List;
 
 @Getter
-@EqualsAndHashCode
-@ToString
+@EqualsAndHashCode(callSuper = true)
+@ToString(callSuper = true)
 public class Bibliography extends RawBibliography {
 
     private final boolean isBook;
