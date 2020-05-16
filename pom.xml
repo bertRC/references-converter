@@ -8,9 +8,10 @@
     <artifactId>references-converter</artifactId>
     <version>1.0.1</version>
     <modules>
-        <module>webapp</module>
         <module>references-analyzer</module>
+        <module>references-generator</module>
         <module>utils</module>
+        <module>webapp</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -24,6 +25,8 @@
         <tomcat.version>8.5.23</tomcat.version>
         <lombok.version>1.18.12</lombok.version>
         <tomcat-launcher.class>education.bert.rc.webapp.launcher.Main</tomcat-launcher.class>
+        <references-analyzer.version>1.0.1</references-analyzer.version>
+        <references-generator.version>1.0.0</references-generator.version>
         <utils.version>1.0.1</utils.version>
     </properties>
 
