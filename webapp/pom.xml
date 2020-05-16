@@ -15,6 +15,21 @@
 
     <dependencies>
         <dependency>
+            <groupId>education.bert.rc</groupId>
+            <artifactId>utils</artifactId>
+            <version>${utils.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>education.bert.rc</groupId>
+            <artifactId>references-analyzer</artifactId>
+            <version>${references-analyzer.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>education.bert.rc</groupId>
+            <artifactId>references-generator</artifactId>
+            <version>${references-generator.version}</version>
+        </dependency>
+        <dependency>
             <groupId>org.apache.tomcat.embed</groupId>
             <artifactId>tomcat-embed-core</artifactId>
             <version>${tomcat.version}</version>
