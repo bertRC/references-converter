@@ -52,6 +52,8 @@
                         <configuration>
                             <excludes>
                                 <exclude>**/exception/*</exclude>
+                                <exclude>**/repository/*</exclude>
+                                <exclude>**/*Colors*</exclude>
                             </excludes>
                             <rules/>
                         </configuration>
@@ -65,6 +67,8 @@
                         <configuration>
                             <excludes>
                                 <exclude>**/exception/*</exclude>
+                                <exclude>**/repository/*</exclude>
+                                <exclude>**/*Colors*</exclude>
                             </excludes>
                         </configuration>
                     </execution>
