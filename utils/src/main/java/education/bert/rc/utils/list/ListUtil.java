@@ -1,4 +1,4 @@
-package education.bert.rc.analyzer.utils.list;
+package education.bert.rc.utils.list;
 
 import java.util.List;
 

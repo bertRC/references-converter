@@ -1,10 +1,10 @@
 package education.bert.rc.analyzer.regexelements;
 
-import education.bert.rc.analyzer.repository.Author;
-import education.bert.rc.analyzer.repository.Entry;
-import education.bert.rc.analyzer.repository.RawBibliography;
-import education.bert.rc.analyzer.repository.StringSegment;
-import education.bert.rc.analyzer.utils.list.ListUtil;
+import education.bert.rc.utils.list.ListUtil;
+import education.bert.rc.utils.repository.Author;
+import education.bert.rc.utils.repository.Entry;
+import education.bert.rc.utils.repository.RawBibliography;
+import education.bert.rc.utils.repository.StringSegment;
 
 import java.util.ArrayList;
 import java.util.List;

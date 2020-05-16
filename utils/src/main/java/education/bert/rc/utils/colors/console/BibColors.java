@@ -1,8 +1,8 @@
-package education.bert.rc.analyzer.utils.console;
+package education.bert.rc.utils.colors.console;
 
-import education.bert.rc.analyzer.repository.RawBibliography;
-import education.bert.rc.analyzer.repository.SegmentComparator;
-import education.bert.rc.analyzer.repository.StringSegment;
+import education.bert.rc.utils.repository.RawBibliography;
+import education.bert.rc.utils.repository.SegmentComparator;
+import education.bert.rc.utils.repository.StringSegment;
 
 import java.util.ArrayList;
 import java.util.List;

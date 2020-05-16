@@ -3,8 +3,8 @@ package education.bert.rc.analyzer.service;
 import education.bert.rc.analyzer.collection.RegexCollection;
 import education.bert.rc.analyzer.regexelements.BaseElement;
 import education.bert.rc.analyzer.regexelements.BibElement;
-import education.bert.rc.analyzer.repository.Bibliography;
-import education.bert.rc.analyzer.repository.RawBibliography;
+import education.bert.rc.utils.repository.Bibliography;
+import education.bert.rc.utils.repository.RawBibliography;
 
 import java.util.List;
 import java.util.stream.Collectors;

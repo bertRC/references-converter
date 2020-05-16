@@ -1,8 +1,8 @@
 package education.bert.rc.analyzer.service;
 
-import education.bert.rc.analyzer.file.service.FileService;
-import education.bert.rc.analyzer.repository.*;
-import education.bert.rc.analyzer.utils.console.BibColors;
+import education.bert.rc.utils.colors.console.BibColors;
+import education.bert.rc.utils.file.service.FileService;
+import education.bert.rc.utils.repository.*;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 

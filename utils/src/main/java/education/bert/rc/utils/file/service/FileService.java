@@ -1,6 +1,6 @@
-package education.bert.rc.analyzer.file.service;
+package education.bert.rc.utils.file.service;
 
-import education.bert.rc.analyzer.file.exception.FileAccessException;
+import education.bert.rc.utils.file.exception.FileAccessException;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
