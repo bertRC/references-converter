@@ -1,5 +1,7 @@
 package education.bert.rc.analyzer.regexelements;
 
+import lombok.Getter;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -7,6 +9,7 @@ import java.util.regex.Pattern;
 
 public class BaseElement {
 
+    @Getter
     private final Pattern pattern;
 
     public BaseElement(String regex) {
@@ -20,10 +23,6 @@ public class BaseElement {
             results.add(matcher.group());
         }
         return results;
-    }
-
-    public Pattern getPattern() {
-        return pattern;
     }
 
     @Override

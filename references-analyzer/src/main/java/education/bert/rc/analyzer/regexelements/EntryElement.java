@@ -1,5 +1,8 @@
 package education.bert.rc.analyzer.regexelements;
 
+import lombok.Getter;
+
+@Getter
 public class EntryElement extends BaseElement {
 
     private final BaseElement key;
@@ -9,13 +12,5 @@ public class EntryElement extends BaseElement {
         super(regex);
         this.key = key;
         this.value = value;
-    }
-
-    public BaseElement getKey() {
-        return key;
-    }
-
-    public BaseElement getValue() {
-        return value;
     }
 }

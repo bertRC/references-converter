@@ -1,8 +1,16 @@
 package education.bert.rc.utils.repository;
 
-import java.util.List;
-import java.util.Objects;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 
+import java.util.List;
+
+@RequiredArgsConstructor
+@Getter
+@EqualsAndHashCode
+@ToString
 public class RawBibliography {
 
     private final String text;
@@ -25,29 +33,6 @@ public class RawBibliography {
     private final Entry numEntry;
     private final Entry otherEntry;
     private final Entry pageEntry;
-
-    public RawBibliography(String text, StringSegment recognized, StringSegment prefix, StringSegment suffix,
-                           StringSegment title, StringSegment journal, StringSegment authorGroup, StringSegment year,
-                           StringSegment vol, StringSegment num, StringSegment other, StringSegment page,
-                           List<Author> authors, Entry volEntry, Entry numEntry, Entry otherEntry, Entry pageEntry) {
-        this.text = text;
-        this.recognized = recognized;
-        this.prefix = prefix;
-        this.suffix = suffix;
-        this.title = title;
-        this.journal = journal;
-        this.authorGroup = authorGroup;
-        this.year = year;
-        this.vol = vol;
-        this.num = num;
-        this.other = other;
-        this.page = page;
-        this.authors = authors;
-        this.volEntry = volEntry;
-        this.numEntry = numEntry;
-        this.otherEntry = otherEntry;
-        this.pageEntry = pageEntry;
-    }
 
     public RawBibliography(String text) {
         this.text = text;
@@ -78,125 +63,5 @@ public class RawBibliography {
             return recognized.getEnd() - recognized.getStart();
         }
         return 0;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public StringSegment getRecognized() {
-        return recognized;
-    }
-
-    public StringSegment getPrefix() {
-        return prefix;
-    }
-
-    public StringSegment getSuffix() {
-        return suffix;
-    }
-
-    public StringSegment getTitle() {
-        return title;
-    }
-
-    public StringSegment getJournal() {
-        return journal;
-    }
-
-    public StringSegment getAuthorGroup() {
-        return authorGroup;
-    }
-
-    public StringSegment getYear() {
-        return year;
-    }
-
-    public StringSegment getVol() {
-        return vol;
-    }
-
-    public StringSegment getNum() {
-        return num;
-    }
-
-    public StringSegment getOther() {
-        return other;
-    }
-
-    public StringSegment getPage() {
-        return page;
-    }
-
-    public List<Author> getAuthors() {
-        return authors;
-    }
-
-    public Entry getVolEntry() {
-        return volEntry;
-    }
-
-    public Entry getNumEntry() {
-        return numEntry;
-    }
-
-    public Entry getOtherEntry() {
-        return otherEntry;
-    }
-
-    public Entry getPageEntry() {
-        return pageEntry;
-    }
-
-    @Override
-    public String toString() {
-        return "RawBibliography{" +
-                "text='" + text +
-                "', recognized='" + recognized +
-                "', prefix='" + prefix +
-                "', suffix='" + suffix +
-                "', title='" + title +
-                "', journal='" + journal +
-                "', authorGroup='" + authorGroup +
-                "', year='" + year +
-                "', vol='" + vol +
-                "', num='" + num +
-                "', other='" + other +
-                "', page='" + page +
-                "', authors=" + authors +
-                ", volEntry=" + volEntry +
-                ", numEntry=" + numEntry +
-                ", otherEntry=" + otherEntry +
-                ", pageEntry=" + pageEntry +
-                '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        RawBibliography that = (RawBibliography) o;
-        return Objects.equals(text, that.text) &&
-                Objects.equals(recognized, that.recognized) &&
-                Objects.equals(prefix, that.prefix) &&
-                Objects.equals(suffix, that.suffix) &&
-                Objects.equals(title, that.title) &&
-                Objects.equals(journal, that.journal) &&
-                Objects.equals(authorGroup, that.authorGroup) &&
-                Objects.equals(year, that.year) &&
-                Objects.equals(vol, that.vol) &&
-                Objects.equals(num, that.num) &&
-                Objects.equals(other, that.other) &&
-                Objects.equals(page, that.page) &&
-                Objects.equals(authors, that.authors) &&
-                Objects.equals(volEntry, that.volEntry) &&
-                Objects.equals(numEntry, that.numEntry) &&
-                Objects.equals(otherEntry, that.otherEntry) &&
-                Objects.equals(pageEntry, that.pageEntry);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(text, recognized, prefix, suffix, title, journal, authorGroup, year, vol, num, other, page, authors, volEntry, numEntry, otherEntry, pageEntry);
     }
 }

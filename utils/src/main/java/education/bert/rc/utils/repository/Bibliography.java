@@ -1,8 +1,14 @@
 package education.bert.rc.utils.repository;
 
-import java.util.List;
-import java.util.Objects;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.ToString;
 
+import java.util.List;
+
+@Getter
+@EqualsAndHashCode
+@ToString
 public class Bibliography extends RawBibliography {
 
     private final boolean isBook;
@@ -47,37 +53,5 @@ public class Bibliography extends RawBibliography {
         super(text);
         isBook = false;
         language = null;
-    }
-
-    public boolean isBook() {
-        return isBook;
-    }
-
-    public String getLanguage() {
-        return language;
-    }
-
-    @Override
-    public String toString() {
-        return "Bibliography{" +
-                super.toString() +
-                "isBook=" + isBook +
-                ", language='" + language + '\'' +
-                '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-        Bibliography that = (Bibliography) o;
-        return isBook == that.isBook &&
-                Objects.equals(language, that.language);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), isBook, language);
     }
 }

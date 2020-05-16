@@ -67,6 +67,6 @@ public class BibColors {
 
     private static void colorizeSegment(StringBuilder stringBuilder, StringSegment coloredSegment) {
         stringBuilder.insert(coloredSegment.getEnd(), ConsoleColors.RESET);
-        stringBuilder.insert(coloredSegment.getStart(), coloredSegment.toString());
+        stringBuilder.insert(coloredSegment.getStart(), coloredSegment.getText());
     }
 }

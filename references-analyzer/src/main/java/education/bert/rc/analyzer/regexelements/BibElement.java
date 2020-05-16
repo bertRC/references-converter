@@ -12,22 +12,16 @@ import java.util.regex.Matcher;
 
 public class BibElement extends BaseElement {
 
-    private final BaseElement title;
-    private final BaseElement journal;
     private final AuthorGroup authorGroup;
-    private final BaseElement year;
     private final EntryElement vol;
     private final EntryElement num;
     private final EntryElement other;
     private final EntryElement page;
 
-    public BibElement(String regex, BaseElement title, BaseElement journal, AuthorGroup authorGroup, BaseElement year,
-                      EntryElement vol, EntryElement num, EntryElement other, EntryElement page) {
+    public BibElement(String regex, AuthorGroup authorGroup, EntryElement vol, EntryElement num, EntryElement other,
+                      EntryElement page) {
         super(regex);
-        this.title = title;
-        this.journal = journal;
         this.authorGroup = authorGroup;
-        this.year = year;
         this.vol = vol;
         this.num = num;
         this.other = other;
@@ -95,8 +89,8 @@ public class BibElement extends BaseElement {
             return new RawBibliography(
                     text,
                     recognized,
-                    prefix.toString().isEmpty() ? null : prefix,
-                    suffix.toString().isEmpty() ? null : suffix,
+                    prefix.getText().isEmpty() ? null : prefix,
+                    suffix.getText().isEmpty() ? null : suffix,
                     title,
                     journal,
                     authorGroup,
@@ -130,37 +124,5 @@ public class BibElement extends BaseElement {
 
     private StringSegment extractGroup(Matcher matcher) {
         return new StringSegment(matcher.group(), matcher.start(), matcher.end());
-    }
-
-    public BaseElement getTitle() {
-        return title;
-    }
-
-    public BaseElement getJournal() {
-        return journal;
-    }
-
-    public AuthorGroup getAuthorGroup() {
-        return authorGroup;
-    }
-
-    public BaseElement getYear() {
-        return year;
-    }
-
-    public EntryElement getVol() {
-        return vol;
-    }
-
-    public EntryElement getNum() {
-        return num;
-    }
-
-    public EntryElement getOther() {
-        return other;
-    }
-
-    public EntryElement getPage() {
-        return page;
     }
 }

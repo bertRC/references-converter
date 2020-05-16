@@ -1,5 +1,8 @@
 package education.bert.rc.analyzer.regexelements;
 
+import lombok.Getter;
+
+@Getter
 public class AuthorElement extends BaseElement {
 
     private final BaseGroup initialGroup;
@@ -9,13 +12,5 @@ public class AuthorElement extends BaseElement {
         super(regex);
         this.initialGroup = initialGroup;
         this.secondName = secondName;
-    }
-
-    public BaseGroup getInitialGroup() {
-        return initialGroup;
-    }
-
-    public BaseElement getSecondName() {
-        return secondName;
     }
 }
