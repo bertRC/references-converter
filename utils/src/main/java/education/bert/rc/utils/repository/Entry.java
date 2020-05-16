@@ -1,4 +1,4 @@
-package education.bert.rc.analyzer.repository;
+package education.bert.rc.utils.repository;
 
 import java.util.Objects;
 

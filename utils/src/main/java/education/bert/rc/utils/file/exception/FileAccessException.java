@@ -1,4 +1,4 @@
-package education.bert.rc.analyzer.file.exception;
+package education.bert.rc.utils.file.exception;
 
 public class FileAccessException extends RuntimeException {
 

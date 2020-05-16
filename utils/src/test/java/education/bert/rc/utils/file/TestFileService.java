@@ -1,7 +1,7 @@
-package education.bert.rc.analyzer.file;
+package education.bert.rc.utils.file;
 
-import education.bert.rc.analyzer.file.exception.FileAccessException;
-import education.bert.rc.analyzer.file.service.FileService;
+import education.bert.rc.utils.file.exception.FileAccessException;
+import education.bert.rc.utils.file.service.FileService;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

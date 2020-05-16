@@ -1,4 +1,4 @@
-package education.bert.rc.analyzer.utils.console;
+package education.bert.rc.utils.colors.console;
 
 public class ConsoleColors {
     // Reset
