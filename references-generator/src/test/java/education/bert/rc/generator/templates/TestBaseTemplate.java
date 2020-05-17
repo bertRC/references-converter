@@ -4,6 +4,7 @@ import education.bert.rc.utils.repository.Author;
 import education.bert.rc.utils.repository.Bibliography;
 import education.bert.rc.utils.repository.Entry;
 import education.bert.rc.utils.repository.StringSegment;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -12,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestBaseTemplate {
 
+    @Disabled
     @Test
     public void testSingleGenerate() {
         final BaseTemplate template = new BaseTemplate(
