@@ -58,7 +58,7 @@ public class TestAnalyzer {
                 Entry.emptyEntry(),
                 Entry.emptyEntry(),
                 false,
-                "latin"
+                Language.LATIN
         ));
         bibExpected.add(new Bibliography(
                 "Gaufman A S, Holtz R C, Meumer F J and Avramski J R 1975 Micromolecules 8 135-9",
@@ -84,7 +84,7 @@ public class TestAnalyzer {
                 Entry.emptyEntry(),
                 new Entry("", "135-9"),
                 false,
-                "latin"
+                Language.LATIN
         ));
         bibExpected.add(new Bibliography(
                 "1. Белев, Д.О. / Некоторые анализы средневековой системы дальше не стал / Д. О. Белев, И.П. Сидоров, Ф.Р.  Мобо, М.А.Венхофф // Био. Мат. - 1998. - Т. 14. - С. 3397-3503. [http...]",
@@ -110,7 +110,7 @@ public class TestAnalyzer {
                 Entry.emptyEntry(),
                 new Entry("С", "3397-3503"),
                 false,
-                "cyrillic"
+                Language.CYRILLIC
         ));
 
         final List<Bibliography> bibActual = analyzer.analyze(fileService.readFile("testPool.txt"));
