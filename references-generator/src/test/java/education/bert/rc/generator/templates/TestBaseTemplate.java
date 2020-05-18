@@ -4,7 +4,6 @@ import education.bert.rc.utils.repository.Author;
 import education.bert.rc.utils.repository.Bibliography;
 import education.bert.rc.utils.repository.Entry;
 import education.bert.rc.utils.repository.StringSegment;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -13,7 +12,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestBaseTemplate {
 
-    @Disabled
     @Test
     public void testSingleGenerate() {
         final BaseTemplate template = new BaseTemplate(
@@ -25,7 +23,7 @@ public class TestBaseTemplate {
                 " - Т. ?.",
                 " - N. ?.",
                 " - № ?.",
-                null,
+                "",
                 " - P. ?",
                 " - С. ?"
         );
@@ -40,8 +38,8 @@ public class TestBaseTemplate {
                 new StringSegment("Д. О. Белев, И.П. Сидоров, Ф.Р.  Мобо, М.А.Венхофф", 74, 124),
                 new StringSegment("1998", 140, 144),
                 new StringSegment("Т. 14.", 148, 154),
-                null,
-                null,
+                StringSegment.emptySegment(),
+                StringSegment.emptySegment(),
                 new StringSegment("С. 3397-3503.", 157, 170),
                 Arrays.asList(
                         new Author("Белев", Arrays.asList("Д", "О")),
@@ -50,8 +48,8 @@ public class TestBaseTemplate {
                         new Author("Венхофф", Arrays.asList("М", "А"))
                 ),
                 new Entry("Т", "14"),
-                null,
-                null,
+                Entry.emptyEntry(),
+                Entry.emptyEntry(),
                 new Entry("С", "3397-3503"),
                 false,
                 "cyrillic"

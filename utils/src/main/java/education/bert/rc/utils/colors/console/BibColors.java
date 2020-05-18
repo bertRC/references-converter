@@ -3,16 +3,17 @@ package education.bert.rc.utils.colors.console;
 import education.bert.rc.utils.repository.RawBibliography;
 import education.bert.rc.utils.repository.SegmentComparator;
 import education.bert.rc.utils.repository.StringSegment;
+import lombok.NonNull;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class BibColors {
-    public static void printlnColorize(RawBibliography bibliography) {
+    public static void printlnColorize(@NonNull RawBibliography bibliography) {
         System.out.println(colorize(bibliography));
     }
 
-    public static String colorize(RawBibliography bibliography) {
+    public static String colorize(@NonNull RawBibliography bibliography) {
         if (!bibliography.isEmpty()) {
             final List<StringSegment> segments = new ArrayList<>();
             final StringSegment prefix = bibliography.getPrefix();
@@ -26,34 +27,34 @@ public class BibColors {
             final StringSegment other = bibliography.getOther();
             final StringSegment page = bibliography.getPage();
 
-            if (prefix != null) {
+            if (!prefix.getText().isEmpty()) {
                 segments.add(new StringSegment(prefix, ConsoleColors.RED));
             }
-            if (suffix != null) {
+            if (!suffix.getText().isEmpty()) {
                 segments.add(new StringSegment(suffix, ConsoleColors.RED));
             }
-            if (title != null) {
+            if (!title.getText().isEmpty()) {
                 segments.add(new StringSegment(title, ConsoleColors.CYAN_BRIGHT));
             }
-            if (journal != null) {
+            if (!journal.getText().isEmpty()) {
                 segments.add(new StringSegment(journal, ConsoleColors.CYAN_BOLD));
             }
-            if (authorGroup != null) {
+            if (!authorGroup.getText().isEmpty()) {
                 segments.add(new StringSegment(authorGroup, ConsoleColors.YELLOW));
             }
-            if (year != null) {
+            if (!year.getText().isEmpty()) {
                 segments.add(new StringSegment(year, ConsoleColors.PURPLE));
             }
-            if (vol != null) {
+            if (!vol.getText().isEmpty()) {
                 segments.add(new StringSegment(vol, ConsoleColors.GREEN));
             }
-            if (num != null) {
+            if (!num.getText().isEmpty()) {
                 segments.add(new StringSegment(num, ConsoleColors.GREEN_BOLD));
             }
-            if (other != null) {
+            if (!other.getText().isEmpty()) {
                 segments.add(new StringSegment(other, ConsoleColors.GREEN_UNDERLINED));
             }
-            if (page != null) {
+            if (!page.getText().isEmpty()) {
                 segments.add(new StringSegment(page, ConsoleColors.BLUE));
             }
 
@@ -65,7 +66,7 @@ public class BibColors {
         return ConsoleColors.colorize(bibliography.getText(), ConsoleColors.RED);
     }
 
-    private static void colorizeSegment(StringBuilder stringBuilder, StringSegment coloredSegment) {
+    private static void colorizeSegment(@NonNull StringBuilder stringBuilder, @NonNull StringSegment coloredSegment) {
         stringBuilder.insert(coloredSegment.getEnd(), ConsoleColors.RESET);
         stringBuilder.insert(coloredSegment.getStart(), coloredSegment.getText());
     }
