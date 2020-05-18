@@ -13,21 +13,21 @@ import java.util.List;
 public class Bibliography extends RawBibliography {
 
     private final boolean isBook;
-    private final String language;
+    private final Language language;
 
     public Bibliography(@NonNull String text, @NonNull StringSegment recognized, @NonNull StringSegment prefix,
                         @NonNull StringSegment suffix, @NonNull StringSegment title, @NonNull StringSegment journal,
                         @NonNull StringSegment authorGroup, @NonNull StringSegment year, @NonNull StringSegment vol,
                         @NonNull StringSegment num, @NonNull StringSegment other, @NonNull StringSegment page,
                         @NonNull List<Author> authors, @NonNull Entry volEntry, @NonNull Entry numEntry,
-                        @NonNull Entry otherEntry, @NonNull Entry pageEntry, boolean isBook, @NonNull String language) {
+                        @NonNull Entry otherEntry, @NonNull Entry pageEntry, boolean isBook, @NonNull Language language) {
         super(text, recognized, prefix, suffix, title, journal, authorGroup, year, vol, num, other, page, authors, volEntry,
                 numEntry, otherEntry, pageEntry);
         this.isBook = isBook;
         this.language = language;
     }
 
-    public Bibliography(@NonNull RawBibliography rawBibliography, boolean isBook, @NonNull String language) {
+    public Bibliography(@NonNull RawBibliography rawBibliography, boolean isBook, @NonNull Language language) {
         super(
                 rawBibliography.getText(),
                 rawBibliography.getRecognized(),
@@ -54,6 +54,6 @@ public class Bibliography extends RawBibliography {
     public Bibliography(@NonNull String text) {
         super(text);
         isBook = false;
-        language = "latin";
+        language = Language.LATIN;
     }
 }

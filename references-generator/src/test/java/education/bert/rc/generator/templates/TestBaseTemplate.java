@@ -1,9 +1,6 @@
 package education.bert.rc.generator.templates;
 
-import education.bert.rc.utils.repository.Author;
-import education.bert.rc.utils.repository.Bibliography;
-import education.bert.rc.utils.repository.Entry;
-import education.bert.rc.utils.repository.StringSegment;
+import education.bert.rc.utils.repository.*;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -52,7 +49,7 @@ public class TestBaseTemplate {
                 Entry.emptyEntry(),
                 new Entry("С", "3397-3503"),
                 false,
-                "cyrillic"
+                Language.CYRILLIC
         );
         assertEquals(expected, template.generate(bibliography));
     }

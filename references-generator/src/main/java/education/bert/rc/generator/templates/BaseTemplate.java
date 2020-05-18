@@ -2,6 +2,7 @@ package education.bert.rc.generator.templates;
 
 import education.bert.rc.utils.repository.Author;
 import education.bert.rc.utils.repository.Bibliography;
+import education.bert.rc.utils.repository.Language;
 import lombok.*;
 
 import java.util.List;
@@ -46,12 +47,12 @@ public class BaseTemplate extends Template {
     @Override
     public String generate(@NonNull Bibliography bibliography) {
         if (!bibliography.isEmpty()) {
-            final String andString = bibliography.getLanguage().equals("latin") ? " and " : " и ";
-            final String volumeTemplate = bibliography.getLanguage().equals("latin") ?
+            final String andString = bibliography.getLanguage() == Language.LATIN ? " and " : " и ";
+            final String volumeTemplate = bibliography.getLanguage() == Language.LATIN ?
                     volumeTemplateLatin : volumeTemplateCyrillic;
-            final String numberTemplate = bibliography.getLanguage().equals("latin") ?
+            final String numberTemplate = bibliography.getLanguage() == Language.LATIN ?
                     numberTemplateLatin : numberTemplateCyrillic;
-            final String pageTemplate = bibliography.getLanguage().equals("latin") ?
+            final String pageTemplate = bibliography.getLanguage() == Language.LATIN ?
                     pageTemplateLatin : pageTemplateCyrillic;
             return bibTemplate
                     .replaceFirst(firstAuthorReplacement,
