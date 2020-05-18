@@ -1,10 +1,8 @@
 package education.bert.rc.utils.repository;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
+import java.util.Collections;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -13,55 +11,52 @@ import java.util.List;
 @ToString
 public class RawBibliography {
 
-    private final String text;
+    @NonNull private final String text;
 
-    private final StringSegment recognized;
-    private final StringSegment prefix;
-    private final StringSegment suffix;
+    @NonNull private final StringSegment recognized;
+    @NonNull private final StringSegment prefix;
+    @NonNull private final StringSegment suffix;
 
-    private final StringSegment title;
-    private final StringSegment journal;
-    private final StringSegment authorGroup;
-    private final StringSegment year;
-    private final StringSegment vol;
-    private final StringSegment num;
-    private final StringSegment other;
-    private final StringSegment page;
+    @NonNull private final StringSegment title;
+    @NonNull private final StringSegment journal;
+    @NonNull private final StringSegment authorGroup;
+    @NonNull private final StringSegment year;
+    @NonNull private final StringSegment vol;
+    @NonNull private final StringSegment num;
+    @NonNull private final StringSegment other;
+    @NonNull private final StringSegment page;
 
-    private final List<Author> authors;
-    private final Entry volEntry;
-    private final Entry numEntry;
-    private final Entry otherEntry;
-    private final Entry pageEntry;
+    @NonNull private final List<Author> authors;
+    @NonNull private final Entry volEntry;
+    @NonNull private final Entry numEntry;
+    @NonNull private final Entry otherEntry;
+    @NonNull private final Entry pageEntry;
 
-    public RawBibliography(String text) {
+    public RawBibliography(@NonNull String text) {
         this.text = text;
-        recognized = null;
-        prefix = null;
-        suffix = null;
-        title = null;
-        journal = null;
-        authorGroup = null;
-        year = null;
-        vol = null;
-        num = null;
-        other = null;
-        page = null;
-        authors = null;
-        volEntry = null;
-        numEntry = null;
-        otherEntry = null;
-        pageEntry = null;
+        recognized = StringSegment.emptySegment();
+        prefix = StringSegment.emptySegment();
+        suffix = StringSegment.emptySegment();
+        title = StringSegment.emptySegment();
+        journal = StringSegment.emptySegment();
+        authorGroup = StringSegment.emptySegment();
+        year = StringSegment.emptySegment();
+        vol = StringSegment.emptySegment();
+        num = StringSegment.emptySegment();
+        other = StringSegment.emptySegment();
+        page = StringSegment.emptySegment();
+        authors = Collections.emptyList();
+        volEntry = Entry.emptyEntry();
+        numEntry = Entry.emptyEntry();
+        otherEntry = Entry.emptyEntry();
+        pageEntry = Entry.emptyEntry();
     }
 
     public boolean isEmpty() {
-        return recognized == null || recognized.getText() == null || recognized.getText().isEmpty();
+        return recognized.getText().isEmpty();
     }
 
     public int getCoverage() {
-        if (recognized != null) {
-            return recognized.getEnd() - recognized.getStart();
-        }
-        return 0;
+        return recognized.getEnd() - recognized.getStart();
     }
 }

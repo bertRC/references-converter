@@ -1,6 +1,7 @@
 package education.bert.rc.utils.file.service;
 
 import education.bert.rc.utils.file.exception.FileAccessException;
+import lombok.NonNull;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -15,7 +16,7 @@ public class FileService {
 
     private final Path uploadPath;
 
-    public FileService(String uploadPath) {
+    public FileService(@NonNull String uploadPath) {
         this.uploadPath = Paths.get(uploadPath);
         try {
             Files.createDirectories(this.uploadPath);
@@ -24,7 +25,7 @@ public class FileService {
         }
     }
 
-    public List<String> readFile(String fileName) {
+    public List<String> readFile(@NonNull String fileName) {
         final Path file = uploadPath.resolve(fileName);
         try (Stream<String> lines = Files.lines(file, StandardCharsets.UTF_8)) {
             return lines.collect(Collectors.toList());

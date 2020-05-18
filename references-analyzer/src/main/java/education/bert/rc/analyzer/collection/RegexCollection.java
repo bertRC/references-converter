@@ -105,8 +105,8 @@ public class RegexCollection {
                                             ")\\s+(?<page>" + page + ")",
                                     authorGroup,
                                     vol,
-                                    null,
-                                    null,
+                                    EntryElement.emptyElement(),
+                                    EntryElement.emptyElement(),
                                     page
                             ));
                             nums.forEach(num -> {
@@ -121,7 +121,7 @@ public class RegexCollection {
                                         authorGroup,
                                         vol,
                                         num,
-                                        null,
+                                        EntryElement.emptyElement(),
                                         page
                                 ));
                             });

@@ -1,5 +1,7 @@
 package education.bert.rc.utils.colors.console;
 
+import lombok.NonNull;
+
 public class ConsoleColors {
     // Reset
     public static final String RESET = "\033[0m";  // Text Reset
@@ -74,7 +76,7 @@ public class ConsoleColors {
     public static final String CYAN_BACKGROUND_BRIGHT = "\033[0;106m";  // CYAN
     public static final String WHITE_BACKGROUND_BRIGHT = "\033[0;107m";   // WHITE
 
-    public static String colorize(String text, String color) {
+    public static String colorize(@NonNull String text, @NonNull String color) {
         return color + text + RESET;
     }
 }

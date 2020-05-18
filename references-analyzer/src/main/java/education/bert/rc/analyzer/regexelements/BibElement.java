@@ -4,6 +4,7 @@ import education.bert.rc.utils.repository.Author;
 import education.bert.rc.utils.repository.Entry;
 import education.bert.rc.utils.repository.RawBibliography;
 import education.bert.rc.utils.repository.StringSegment;
+import lombok.NonNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,8 +18,8 @@ public class BibElement extends BaseElement {
     private final EntryElement other;
     private final EntryElement page;
 
-    public BibElement(String regex, AuthorGroup authorGroup, EntryElement vol, EntryElement num, EntryElement other,
-                      EntryElement page) {
+    public BibElement(@NonNull String regex, @NonNull AuthorGroup authorGroup, @NonNull EntryElement vol,
+                      @NonNull EntryElement num, @NonNull EntryElement other, @NonNull EntryElement page) {
         super(regex);
         this.authorGroup = authorGroup;
         this.vol = vol;
@@ -27,7 +28,7 @@ public class BibElement extends BaseElement {
         this.page = page;
     }
 
-    public RawBibliography parse(String text) {
+    public RawBibliography parse(@NonNull String text) {
         final Matcher matcher = getPattern().matcher(text);
         if (matcher.find()) {
             final StringSegment recognized = extractGroup(matcher);
@@ -44,50 +45,36 @@ public class BibElement extends BaseElement {
             final StringSegment page = extractGroup(matcher, "page");
 
             List<Author> authors = new ArrayList<>();
-            if (authorGroup != null) {
-                final List<String> authorStrings = this.authorGroup.getAuthor().find(authorGroup.toString());
-                authorStrings.forEach(s -> {
-                    final String secondName = this.authorGroup.getAuthor().getSecondName().find(s).get(0);
-                    final String initialGroup = this.authorGroup.getAuthor().getInitialGroup().find(s).get(0);
-                    final List<String> initials = this.authorGroup.getAuthor().getInitialGroup().getBaseElement()
-                            .find(initialGroup);
-                    authors.add(new Author(secondName, initials));
-                });
-            }
+            final List<String> authorStrings = this.authorGroup.getAuthor().find(authorGroup.getText());
+            authorStrings.forEach(s -> {
+                final String secondName = this.authorGroup.getAuthor().getSecondName().find(s).get(0);
+                final String initialGroup = this.authorGroup.getAuthor().getInitialGroup().find(s).get(0);
+                final List<String> initials = this.authorGroup.getAuthor().getInitialGroup().getBaseElement()
+                        .find(initialGroup);
+                authors.add(new Author(secondName, initials));
+            });
 
-            Entry volEntry = null;
-            if (vol != null) {
-                final String volKey = this.vol.getKey().find(vol.toString()).get(0);
-                final String volValue = this.vol.getValue().find(vol.toString()).get(0);
-                volEntry = new Entry(volKey, volValue);
-            }
+            final String volKey = this.vol.getKey().find(vol.getText()).get(0);
+            final String volValue = this.vol.getValue().find(vol.getText()).get(0);
+            final Entry volEntry = new Entry(volKey, volValue);
 
-            Entry numEntry = null;
-            if (num != null) {
-                final String numKey = this.num.getKey().find(num.toString()).get(0);
-                final String numValue = this.num.getValue().find(num.toString()).get(0);
-                numEntry = new Entry(numKey, numValue);
-            }
+            final String numKey = this.num.getKey().find(num.getText()).get(0);
+            final String numValue = this.num.getValue().find(num.getText()).get(0);
+            final Entry numEntry = new Entry(numKey, numValue);
 
-            Entry otherEntry = null;
-            if (other != null) {
-                final String otherKey = this.other.getKey().find(other.toString()).get(0);
-                final String otherValue = this.other.getValue().find(other.toString()).get(0);
-                otherEntry = new Entry(otherKey, otherValue);
-            }
+            final String otherKey = this.other.getKey().find(other.getText()).get(0);
+            final String otherValue = this.other.getValue().find(other.getText()).get(0);
+            final Entry otherEntry = new Entry(otherKey, otherValue);
 
-            Entry pageEntry = null;
-            if (page != null) {
-                final String pageKey = this.page.getKey().find(page.toString()).get(0);
-                final String pageValue = this.page.getValue().find(page.toString()).get(0);
-                pageEntry = new Entry(pageKey, pageValue);
-            }
+            final String pageKey = this.page.getKey().find(page.getText()).get(0);
+            final String pageValue = this.page.getValue().find(page.getText()).get(0);
+            final Entry pageEntry = new Entry(pageKey, pageValue);
 
             return new RawBibliography(
                     text,
                     recognized,
-                    prefix.getText().isEmpty() ? null : prefix,
-                    suffix.getText().isEmpty() ? null : suffix,
+                    prefix,
+                    suffix,
                     title,
                     journal,
                     authorGroup,
@@ -106,7 +93,7 @@ public class BibElement extends BaseElement {
         return new RawBibliography(text);
     }
 
-    private StringSegment extractGroup(Matcher matcher, String groupName) {
+    private StringSegment extractGroup(@NonNull Matcher matcher, @NonNull String groupName) {
         try {
             if (matcher.group(groupName) != null) {
                 return new StringSegment(matcher.group(groupName), matcher.start(groupName), matcher.end(groupName));
@@ -116,10 +103,10 @@ public class BibElement extends BaseElement {
 //            System.out.println("[Warning]: " + e.getMessage());
 //            e.printStackTrace();
         }
-        return null;
+        return StringSegment.emptySegment();
     }
 
-    private StringSegment extractGroup(Matcher matcher) {
+    private StringSegment extractGroup(@NonNull Matcher matcher) {
         return new StringSegment(matcher.group(), matcher.start(), matcher.end());
     }
 }

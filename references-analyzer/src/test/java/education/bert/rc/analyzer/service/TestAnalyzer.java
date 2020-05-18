@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -40,37 +41,37 @@ public class TestAnalyzer {
         List<Bibliography> bibExpected = new ArrayList<>();
         bibExpected.add(new Bibliography(
                 "Никто: абсолютно никто",
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
-                null,
+                StringSegment.emptySegment(),
+                StringSegment.emptySegment(),
+                StringSegment.emptySegment(),
+                StringSegment.emptySegment(),
+                StringSegment.emptySegment(),
+                StringSegment.emptySegment(),
+                StringSegment.emptySegment(),
+                StringSegment.emptySegment(),
+                StringSegment.emptySegment(),
+                StringSegment.emptySegment(),
+                StringSegment.emptySegment(),
+                Collections.emptyList(),
+                Entry.emptyEntry(),
+                Entry.emptyEntry(),
+                Entry.emptyEntry(),
+                Entry.emptyEntry(),
                 false,
-                null
+                "latin"
         ));
         bibExpected.add(new Bibliography(
                 "Gaufman A S, Holtz R C, Meumer F J and Avramski J R 1975 Micromolecules 8 135-9",
                 new StringSegment("Gaufman A S, Holtz R C, Meumer F J and Avramski J R 1975 Micromolecules 8 135-9", 0, 79),
-                null,
-                null,
-                null,
+                StringSegment.emptySegment(),
+                StringSegment.emptySegment(),
+                StringSegment.emptySegment(),
                 new StringSegment("Micromolecules", 57, 71),
                 new StringSegment("Gaufman A S, Holtz R C, Meumer F J and Avramski J R", 0, 51),
                 new StringSegment("1975", 52, 56),
                 new StringSegment("8", 72, 73),
-                null,
-                null,
+                StringSegment.emptySegment(),
+                StringSegment.emptySegment(),
                 new StringSegment("135-9", 74, 79),
                 Arrays.asList(
                         new Author("Gaufman", Arrays.asList("A", "S")),
@@ -79,8 +80,8 @@ public class TestAnalyzer {
                         new Author("Avramski", Arrays.asList("J", "R"))
                 ),
                 new Entry("", "8"),
-                null,
-                null,
+                Entry.emptyEntry(),
+                Entry.emptyEntry(),
                 new Entry("", "135-9"),
                 false,
                 "latin"
@@ -95,8 +96,8 @@ public class TestAnalyzer {
                 new StringSegment("Д. О. Белев, И.П. Сидоров, Ф.Р.  Мобо, М.А.Венхофф", 74, 124),
                 new StringSegment("1998", 140, 144),
                 new StringSegment("Т. 14.", 148, 154),
-                null,
-                null,
+                StringSegment.emptySegment(),
+                StringSegment.emptySegment(),
                 new StringSegment("С. 3397-3503.", 157, 170),
                 Arrays.asList(
                         new Author("Белев", Arrays.asList("Д", "О")),
@@ -105,8 +106,8 @@ public class TestAnalyzer {
                         new Author("Венхофф", Arrays.asList("М", "А"))
                 ),
                 new Entry("Т", "14"),
-                null,
-                null,
+                Entry.emptyEntry(),
+                Entry.emptyEntry(),
                 new Entry("С", "3397-3503"),
                 false,
                 "cyrillic"

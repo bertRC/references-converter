@@ -16,17 +16,17 @@ import java.util.stream.Collectors;
 @ToString(callSuper = true)
 public class BaseTemplate extends Template {
 
-    private String bibTemplate;
-    private String authorTemplate;
-    private String firstAuthorTemplate;
-    private boolean andRequired;
-    private String volumeTemplateLatin;
-    private String volumeTemplateCyrillic;
-    private String numberTemplateLatin;
-    private String numberTemplateCyrillic;
-    private String otherTemplate;
-    private String pageTemplateLatin;
-    private String pageTemplateCyrillic;
+    @NonNull private String bibTemplate;
+    @NonNull private String authorTemplate;
+    @NonNull private String firstAuthorTemplate;
+    @NonNull private boolean andRequired;
+    @NonNull private String volumeTemplateLatin;
+    @NonNull private String volumeTemplateCyrillic;
+    @NonNull private String numberTemplateLatin;
+    @NonNull private String numberTemplateCyrillic;
+    @NonNull private String otherTemplate;
+    @NonNull private String pageTemplateLatin;
+    @NonNull private String pageTemplateCyrillic;
 
     private final static String simpleReplacement = "\\?";
     private final static String firstAuthorReplacement = "<firstAuthor>";
@@ -44,8 +44,8 @@ public class BaseTemplate extends Template {
     private final static String secondNameRegex = "\\b[A-ZА-Я][a-zа-я]+\\b";
 
     @Override
-    public String generate(Bibliography bibliography) {
-        if (bibliography != null && !bibliography.isEmpty()) {
+    public String generate(@NonNull Bibliography bibliography) {
+        if (!bibliography.isEmpty()) {
             final String andString = bibliography.getLanguage().equals("latin") ? " and " : " и ";
             final String volumeTemplate = bibliography.getLanguage().equals("latin") ?
                     volumeTemplateLatin : volumeTemplateCyrillic;
@@ -74,38 +74,35 @@ public class BaseTemplate extends Template {
     }
 
     @Override
-    public List<String> generate(List<Bibliography> bibliographies) {
+    public List<String> generate(@NonNull List<Bibliography> bibliographies) {
         return bibliographies.parallelStream().map(this::generate).collect(Collectors.toList());
     }
 
-    private static String prepareAuthor(Author author, String authorTemplate) {
-        if (author != null && author.getSecondName() != null) {
-            final Matcher matcher = initialsPattern.matcher(authorTemplate);
-            String intermediate = matcher.find() ? matcher.group("intermediate") : "";
-            if (intermediate == null) intermediate = "";
-            StringBuilder initialsResult = new StringBuilder();
-            if (author.getInitials() != null && !author.getInitials().isEmpty()) {
-                initialsResult = new StringBuilder(author.getInitials().get(0));
-                for (int i = 1; i < author.getInitials().size(); i++) {
-                    initialsResult.append(intermediate).append(author.getInitials().get(i));
-                }
+    private static String prepareAuthor(@NonNull Author author, @NonNull String authorTemplate) {
+        final Matcher matcher = initialsPattern.matcher(authorTemplate);
+        String intermediate = matcher.find() ? matcher.group("intermediate") : "";
+        if (intermediate == null) intermediate = "";
+        StringBuilder initialsResult = new StringBuilder();
+        if (!author.getInitials().isEmpty()) {
+            initialsResult = new StringBuilder(author.getInitials().get(0));
+            for (int i = 1; i < author.getInitials().size(); i++) {
+                initialsResult.append(intermediate).append(author.getInitials().get(i));
             }
-            return authorTemplate.replaceFirst(initialsRegex, initialsResult.toString())
-                    .replaceFirst(secondNameRegex, author.getSecondName());
         }
-        return "";
+        return authorTemplate.replaceFirst(initialsRegex, initialsResult.toString())
+                .replaceFirst(secondNameRegex, author.getSecondName());
     }
 
-    private static String prepareFirstAuthor(List<Author> authors, String authorTemplate) {
-        if (authors != null && !authors.isEmpty()) {
+    private static String prepareFirstAuthor(@NonNull List<Author> authors, @NonNull String authorTemplate) {
+        if (!authors.isEmpty()) {
             return prepareAuthor(authors.get(0), authorTemplate);
         }
         return "";
     }
 
-    private static String prepareAuthors(List<Author> authors, String authorTemplate, String andString,
-                                         boolean andRequired) {
-        if (authors != null && !authors.isEmpty()) {
+    private static String prepareAuthors(@NonNull List<Author> authors, @NonNull String authorTemplate,
+                                         @NonNull String andString, boolean andRequired) {
+        if (!authors.isEmpty()) {
             StringBuilder authorsResult = new StringBuilder(prepareAuthor(authors.get(0), authorTemplate));
             for (int i = 1; i < authors.size(); i++) {
                 if (andRequired && i == authors.size() - 1) {
@@ -120,8 +117,8 @@ public class BaseTemplate extends Template {
         return "";
     }
 
-    private static String prepareSingle(String value, String singleTemplate) {
-        if (value != null && !value.isEmpty()) {
+    private static String prepareSingle(@NonNull String value, @NonNull String singleTemplate) {
+        if (!value.isEmpty()) {
             return singleTemplate.replaceFirst(simpleReplacement, value);
         }
         return "";

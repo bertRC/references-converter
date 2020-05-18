@@ -1,6 +1,7 @@
 package education.bert.rc.analyzer.regexelements;
 
 import lombok.Getter;
+import lombok.NonNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,11 +13,11 @@ public class BaseElement {
     @Getter
     private final Pattern pattern;
 
-    public BaseElement(String regex) {
+    public BaseElement(@NonNull String regex) {
         pattern = Pattern.compile(regex);
     }
 
-    public List<String> find(String text) {
+    public List<String> find(@NonNull String text) {
         List<String> results = new ArrayList<>();
         final Matcher matcher = pattern.matcher(text);
         while (matcher.find()) {

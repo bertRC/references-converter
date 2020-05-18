@@ -5,6 +5,7 @@ import education.bert.rc.analyzer.regexelements.BaseElement;
 import education.bert.rc.analyzer.regexelements.BibElement;
 import education.bert.rc.utils.repository.Bibliography;
 import education.bert.rc.utils.repository.RawBibliography;
+import lombok.NonNull;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,7 +14,7 @@ public class Analyzer {
 
     private final RegexCollection collection = new RegexCollection();
 
-    public String getLanguage(String text) {
+    public String getLanguage(@NonNull String text) {
         final BaseElement latin = new BaseElement("[A-Za-z]");
         final BaseElement cyrillic = new BaseElement("[А-Яа-я]");
         if (latin.find(text).size() > cyrillic.find(text).size()) {
@@ -23,7 +24,7 @@ public class Analyzer {
         }
     }
 
-    public Bibliography analyze(String text) {
+    public Bibliography analyze(@NonNull String text) {
         final String language = getLanguage(text);
         int coverage = 0;
         Bibliography result = new Bibliography(text);
@@ -51,8 +52,7 @@ public class Analyzer {
         return result;
     }
 
-    public List<Bibliography> analyze(List<String> lines) {
-//        return lines.stream().map(this::analyze).collect(Collectors.toList());
+    public List<Bibliography> analyze(@NonNull List<String> lines) {
         return lines.parallelStream().map(this::analyze).collect(Collectors.toList());
     }
 }
