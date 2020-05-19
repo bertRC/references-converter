@@ -3,19 +3,17 @@ package education.bert.rc.generator.templates;
 import education.bert.rc.utils.repository.Author;
 import education.bert.rc.utils.repository.Bibliography;
 import education.bert.rc.utils.repository.Language;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NonNull;
 
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
-@AllArgsConstructor()
-@Setter
-@Getter
-@EqualsAndHashCode(callSuper = true)
-@ToString(callSuper = true)
-public class BaseTemplate extends Template {
+@AllArgsConstructor
+@Data
+public class BaseTemplate {
 
     @NonNull private String bibTemplate;
     @NonNull private String authorTemplate;
@@ -44,7 +42,6 @@ public class BaseTemplate extends Template {
     private final static Pattern initialsPattern = Pattern.compile(initialsRegex);
     private final static String secondNameRegex = "\\b[A-ZА-Я][a-zа-я]+\\b";
 
-    @Override
     public String generate(@NonNull Bibliography bibliography) {
         if (!bibliography.isEmpty()) {
             final String andString = bibliography.getLanguage() == Language.LATIN ? " and " : " и ";
@@ -72,11 +69,6 @@ public class BaseTemplate extends Template {
                             prepareSingle(bibliography.getPageEntry().getValue(), pageTemplate));
         }
         return "";
-    }
-
-    @Override
-    public List<String> generate(@NonNull List<Bibliography> bibliographies) {
-        return bibliographies.parallelStream().map(this::generate).collect(Collectors.toList());
     }
 
     private static String prepareAuthor(@NonNull Author author, @NonNull String authorTemplate) {
