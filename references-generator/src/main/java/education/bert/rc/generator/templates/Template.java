@@ -1,22 +1,15 @@
 package education.bert.rc.generator.templates;
 
 import education.bert.rc.utils.repository.Bibliography;
-import lombok.Data;
 import lombok.NonNull;
 
-import java.util.Collections;
 import java.util.List;
 
-@Data
-public abstract class Template {
+public interface Template {
 
-    @NonNull private String name = "";
+    String getName();
 
-    public String generate(@NonNull Bibliography bibliography) {
-        return "";
-    }
+    String generate(@NonNull Bibliography bibliography);
 
-    public List<String> generate(@NonNull List<Bibliography> bibliographies) {
-        return Collections.emptyList();
-    }
+    List<String> generate(@NonNull List<Bibliography> bibliographies);
 }
