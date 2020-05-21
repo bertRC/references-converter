@@ -1,6 +1,7 @@
 package education.bert.rc.generator.templates;
 
 import education.bert.rc.utils.repository.Bibliography;
+import education.bert.rc.utils.repository.Language;
 import lombok.Data;
 import lombok.NonNull;
 
@@ -11,12 +12,24 @@ import java.util.stream.Collectors;
 public class StandardTemplate implements Template {
 
     @NonNull private final String name;
-    @NonNull private final BaseTemplate articleTemplate;
-    @NonNull private final BaseTemplate bookTemplate;
+    @NonNull private String articleLatinTemplate;
+    @NonNull private String articleCyrillicTemplate;
+    @NonNull private String bookLatinTemplate;
+    @NonNull private String bookCyrillicTemplate;
 
     @Override
     public String generate(@NonNull Bibliography bibliography) {
-        return bibliography.isBook() ? bookTemplate.generate(bibliography) : articleTemplate.generate(bibliography);
+        if (!bibliography.isEmpty()) {
+            if (bibliography.getLanguage().equals(Language.LATIN)) {
+                return bibliography.isBook() ?
+                        Templates.generate(bibliography, bookLatinTemplate) :
+                        Templates.generate(bibliography, articleLatinTemplate);
+            }
+            return bibliography.isBook() ?
+                    Templates.generate(bibliography, bookCyrillicTemplate) :
+                    Templates.generate(bibliography, articleCyrillicTemplate);
+        }
+        return "";
     }
 
     @Override

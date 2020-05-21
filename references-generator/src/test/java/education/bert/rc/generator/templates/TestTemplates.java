@@ -7,23 +7,11 @@ import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class TestBaseTemplate {
+public class TestTemplates {
 
     @Test
-    public void testSingleGenerate() {
-        final BaseTemplate template = new BaseTemplate(
-                "<firstAuthor> / <title> / <authors> // <journal> - <year>.<vol><num><pages>.",
-                "I.I. Ivanov",
-                "Ivanov, I.I.",
-                false,
-                " - V. ?.",
-                " - Т. ?.",
-                " - N. ?.",
-                " - № ?.",
-                "",
-                " - P. ?",
-                " - С. ?"
-        );
+    public void test() {
+        final String template = "<firstAuthor=\"Ivanov, I.I.\"> / <title> / <authors=\"I.I. Ivanov\"> // <journal> - <year>.<vol=\" - Т. ?.\"><num=\" - №. ?.\"><pages=\" - С. ?\">.";
         final String expected = "Белев, Д.О. / Некоторые анализы средневековой системы дальше не стал / Д.О. Белев, И.П. Сидоров, Ф.Р. Мобо, М.А. Венхофф // Био. Мат. - 1998. - Т. 14. - С. 3397-3503.";
         final Bibliography bibliography = new Bibliography(
                 "1. Белев, Д.О. / Некоторые анализы средневековой системы дальше не стал / Д. О. Белев, И.П. Сидоров, Ф.Р.  Мобо, М.А.Венхофф // Био. Мат. - 1998. - Т. 14. - С. 3397-3503. [http...]",
@@ -51,6 +39,6 @@ public class TestBaseTemplate {
                 false,
                 Language.CYRILLIC
         );
-        assertEquals(expected, template.generate(bibliography));
+        assertEquals(expected, Templates.generate(bibliography, template));
     }
 }
