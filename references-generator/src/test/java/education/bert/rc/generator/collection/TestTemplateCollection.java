@@ -1,31 +1,22 @@
-package education.bert.rc.generator.templates;
+package education.bert.rc.generator.collection;
 
 import education.bert.rc.utils.repository.*;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class TestBaseTemplate {
+public class TestTemplateCollection {
 
     @Test
-    public void testSingleGenerate() {
-        final BaseTemplate template = new BaseTemplate(
-                "<firstAuthor> / <title> / <authors> // <journal> - <year>.<vol><num><pages>.",
-                "I.I. Ivanov",
-                "Ivanov, I.I.",
-                false,
-                " - V. ?.",
-                " - Т. ?.",
-                " - N. ?.",
-                " - № ?.",
-                "",
-                " - P. ?",
-                " - С. ?"
-        );
-        final String expected = "Белев, Д.О. / Некоторые анализы средневековой системы дальше не стал / Д.О. Белев, И.П. Сидоров, Ф.Р. Мобо, М.А. Венхофф // Био. Мат. - 1998. - Т. 14. - С. 3397-3503.";
-        final Bibliography bibliography = new Bibliography(
+    public void testGost() {
+        final TemplateCollection collection = new TemplateCollection();
+        final String expected = "Белев, Д.О. / Некоторые анализы средневековой системы дальше не стал / Д.О. Белев, И.П. Сидоров, Ф.Р. Мобо, М.А. Венхофф // Био. Мат.. – 1998. – Т. 14. – С. 3397-3503.";
+        List<Bibliography> bibliographies = new ArrayList<>();
+        bibliographies.add(new Bibliography(
                 "1. Белев, Д.О. / Некоторые анализы средневековой системы дальше не стал / Д. О. Белев, И.П. Сидоров, Ф.Р.  Мобо, М.А.Венхофф // Био. Мат. - 1998. - Т. 14. - С. 3397-3503. [http...]",
                 new StringSegment("Белев, Д.О. / Некоторые анализы средневековой системы дальше не стал / Д. О. Белев, И.П. Сидоров, Ф.Р.  Мобо, М.А.Венхофф // Био. Мат. - 1998. - Т. 14. - С. 3397-3503.", 3, 170),
                 new StringSegment("1. ", 0, 3),
@@ -50,7 +41,8 @@ public class TestBaseTemplate {
                 new Entry("С", "3397-3503"),
                 false,
                 Language.CYRILLIC
-        );
-        assertEquals(expected, template.generate(bibliography));
+        ));
+        final String result = collection.getAll().get(1).generate(bibliographies).get(0);
+        assertEquals(expected, result);
     }
 }
