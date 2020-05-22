@@ -14,23 +14,23 @@ public class Templates {
     private final static Pattern initialsPattern = Pattern.compile(initialsRegex);
     private final static String secondNameRegex = "\\b[A-ZА-Я][a-zа-я]+\\b";
     private final static Pattern firstAuthorPattern =
-            Pattern.compile("<\\s*(?i)firstAuthor(?:\\s*=\\s*\"(?<template>.*?)\")?\\s*>");
+            Pattern.compile("<\\s*(?i)firstAuthor(?:\\s*=\\s*\"(?<template>[^\"]*)\")?\\s*>");
     private final static Pattern titlePattern =
-            Pattern.compile("<\\s*(?i)title(?:\\s*=\\s*\"(?<template>.*?)\")?\\s*>");
+            Pattern.compile("<\\s*(?i)title(?:\\s*=\\s*\"(?<template>[^\"]*)\")?\\s*>");
     private final static Pattern authorsPattern =
-            Pattern.compile("<\\s*(?i)authors(?:\\s*=\\s*\"(?<template>.*?)\")?(?:\\s*and(?:\\s*=\\s*\"(?<and>.*?)\")?)?\\s*>");
+            Pattern.compile("<\\s*(?i)authors(?:\\s*=\\s*\"(?<template>[^\"]*)\")?(?<and>\\s*and(?:\\s*=\\s*\"(?<andValue>[^\"]*)\")?)?\\s*>");
     private final static Pattern journalPattern =
-            Pattern.compile("<\\s*(?i)journal(?:\\s*=\\s*\"(?<template>.*?)\")?\\s*>");
+            Pattern.compile("<\\s*(?i)journal(?:\\s*=\\s*\"(?<template>[^\"]*)\")?\\s*>");
     private final static Pattern yearPattern =
-            Pattern.compile("<\\s*(?i)year(?:\\s*=\\s*\"(?<template>.*?)\")?\\s*>");
+            Pattern.compile("<\\s*(?i)year(?:\\s*=\\s*\"(?<template>[^\"]*)\")?\\s*>");
     private final static Pattern volumePattern =
-            Pattern.compile("<\\s*(?i)vol(?:\\s*=\\s*\"(?<template>.*?)\")?\\s*>");
+            Pattern.compile("<\\s*(?i)vol(?:\\s*=\\s*\"(?<template>[^\"]*)\")?\\s*>");
     private final static Pattern numberPattern =
-            Pattern.compile("<\\s*(?i)num(?:\\s*=\\s*\"(?<template>.*?)\")?\\s*>");
+            Pattern.compile("<\\s*(?i)num(?:\\s*=\\s*\"(?<template>[^\"]*)\")?\\s*>");
     private final static Pattern otherPattern =
-            Pattern.compile("<\\s*(?i)other(?:\\s*=\\s*\"(?<template>.*?)\")?\\s*>");
+            Pattern.compile("<\\s*(?i)other(?:\\s*=\\s*\"(?<template>[^\"]*)\")?\\s*>");
     private final static Pattern pagePattern =
-            Pattern.compile("<\\s*(?i)pages(?:\\s*=\\s*\"(?<template>.*?)\")?\\s*>");
+            Pattern.compile("<\\s*(?i)pages(?:\\s*=\\s*\"(?<template>[^\"]*)\")?\\s*>");
 
     public static String generate(@NonNull Bibliography bibliography, @NonNull String template) {
         String result = fulfillFirstAuthor(bibliography.getAuthors(), template);
@@ -67,7 +67,9 @@ public class Templates {
         final Matcher matcher = authorsPattern.matcher(template);
         while (matcher.find()) {
             final String innerTemplate = matcher.group("template");
-            final String andTemplate = matcher.group("and");
+            final String andAttribute = matcher.group("and");
+            String andTemplate = matcher.group("andValue");
+            if (andAttribute != null && andTemplate == null) andTemplate = "and";
             result = result.replaceFirst(
                     authorsPattern.pattern(),
                     prepareAuthors(authors, innerTemplate == null ? "Ivanov I.I." : innerTemplate, andTemplate)
