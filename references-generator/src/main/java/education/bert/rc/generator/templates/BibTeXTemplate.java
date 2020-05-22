@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Data
-public class BibTexTemplate implements Template {
+public class BibTeXTemplate implements Template {
 
     @NonNull private final String name;
 
