@@ -17,7 +17,6 @@ public class StandardTemplate implements Template {
     @NonNull private String bookLatinTemplate;
     @NonNull private String bookCyrillicTemplate;
 
-    @Override
     public String generate(@NonNull Bibliography bibliography) {
         if (!bibliography.isEmpty()) {
             if (bibliography.getLanguage().equals(Language.LATIN)) {

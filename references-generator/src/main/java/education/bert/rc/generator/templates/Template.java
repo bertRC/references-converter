@@ -9,7 +9,5 @@ public interface Template {
 
     String getName();
 
-    String generate(@NonNull Bibliography bibliography);
-
     List<String> generate(@NonNull List<Bibliography> bibliographies);
 }
