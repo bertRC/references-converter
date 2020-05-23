@@ -1,6 +1,5 @@
 package education.bert.rc.webapp.servlet;
 
-import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
