@@ -8,7 +8,7 @@
 <body>
 
 <div class="container">
-    <form method="POST" action="<%= request.getContextPath() %>" accept-charset="UTF-8">
+    <form method="POST" action="<%= request.getContextPath() %>" enctype="multipart/form-data" accept-charset="UTF-8">
         <div class="form-group">
             <label for="exampleFormControlTextarea1">Example textarea</label>
             <textarea class="form-control" id="exampleFormControlTextarea1" name="text" rows="30"></textarea>
