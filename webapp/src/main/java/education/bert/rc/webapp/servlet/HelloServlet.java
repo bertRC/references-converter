@@ -1,6 +1,5 @@
 package education.bert.rc.webapp.servlet;
 
-import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -12,9 +11,7 @@ public class HelloServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        ServletOutputStream out = resp.getOutputStream();
-        out.write("Привет Мир!!!".getBytes());
-        out.flush();
-        out.close();
+        resp.setContentType("text/plain;charset=utf-8");
+        resp.getWriter().println("Привет мир!");
     }
 }
