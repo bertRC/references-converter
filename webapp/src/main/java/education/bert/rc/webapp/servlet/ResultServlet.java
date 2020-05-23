@@ -12,7 +12,9 @@ import java.util.List;
 public class ResultServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        resp.setContentType("text/plain;charset=utf-8");
+        req.setCharacterEncoding("UTF-8");
+        resp.setCharacterEncoding("UTF-8");
+        resp.setContentType("text/plain;charset=UTF-8");
         final List<String> strings = (List<String>) this.getServletContext().getAttribute("strings");
 
         if (strings != null) {
