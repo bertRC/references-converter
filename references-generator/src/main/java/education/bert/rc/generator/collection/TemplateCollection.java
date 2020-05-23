@@ -12,8 +12,6 @@ public class TemplateCollection {
     private final List<Template> templates = new ArrayList<>();
 
     public TemplateCollection() {
-        templates.add(new BibTeXTemplate("BibTeX"));
-
         templates.add(new StandardTemplate(
                 "ГОСТ 7.0.5. 2008",
                 "<firstAuthor=\"Ivanov, I.I.\"> / <title> / <authors=\"I.I. Ivanov\"> // <journal>. – <year>.<vol=\" – V. ?.\"><num=\" – N. ?.\"><pages=\" – P. ?\">.",
@@ -21,6 +19,8 @@ public class TemplateCollection {
                 "<firstAuthor=\"Ivanov, I.I.\"> / <title> / <authors=\"I.I. Ivanov\">. – <journal>, <year>.<vol=\" V. ?.\"><num=\" – N. ?.\"><pages=\" – ? p.\">.",
                 "<firstAuthor=\"Ivanov, I.I.\"> / <title> / <authors=\"I.I. Ivanov\">. – <journal>, <year>.<vol=\" Т. ?.\"><num=\" – №. ?.\"><pages=\" – ? с.\">."
         ));
+
+        templates.add(new BibTeXTemplate("BibTeX"));
     }
 
     public List<Template> getAll() {

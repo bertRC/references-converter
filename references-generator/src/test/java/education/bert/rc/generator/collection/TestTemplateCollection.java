@@ -42,7 +42,7 @@ public class TestTemplateCollection {
                 false,
                 Language.CYRILLIC
         ));
-        final String result = collection.getAll().get(1).generate(bibliographies).get(0);
+        final String result = collection.getAll().get(0).generate(bibliographies).get(0);
         assertEquals(expected, result);
     }
 }
