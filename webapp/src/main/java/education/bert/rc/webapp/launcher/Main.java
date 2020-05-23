@@ -73,6 +73,9 @@ public class Main {
         resources.addPreResources(resourceSet);
         ctx.setResources(resources);
 
+//        ctx.setRequestCharacterEncoding("UTF-8");
+//        ctx.setResponseCharacterEncoding("UTF-8");
+
         tomcat.start();
         tomcat.getServer().await();
     }
