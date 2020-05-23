@@ -18,11 +18,11 @@ public class IndexServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         final String text = req.getParameter("text");
         final List<String> strings = Arrays.asList(text.split("(\r\n)|(\n\r)|[\r\n]"));
-        System.out.println("Text Length = " + text.length());
-        strings.forEach(s -> System.out.println("'" + s + "' Length = " + s.length()));
+        this.getServletContext().setAttribute("strings", strings);
         resp.sendRedirect("/");
+        strings.forEach(System.out::println);
     }
 }
