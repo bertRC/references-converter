@@ -23,6 +23,7 @@ public class IndexServlet extends HttpServlet {
         System.out.println(text);
         final List<String> strings = Arrays.asList(text.split("(\r\n)|(\n\r)|[\r\n]"));
         this.getServletContext().setAttribute("strings", strings);
+
         resp.sendRedirect("/");
     }
 }
