@@ -5,7 +5,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
-import java.nio.charset.StandardCharsets;
 
 @WebServlet(name = "MyServlet", urlPatterns = "/hello")
 public class HelloServlet extends HttpServlet {
@@ -18,11 +17,12 @@ public class HelloServlet extends HttpServlet {
 
         String message = "Привет мир!";
         PrintWriter printWriter = resp.getWriter();
-        BufferedReader reader = new BufferedReader(new InputStreamReader(new ByteArrayInputStream(message.getBytes(StandardCharsets.UTF_8)), StandardCharsets.UTF_8));
-        String line;
-        while ((line = reader.readLine()) != null) {
-            printWriter.println(line);
-        }
-        reader.close();
+        printWriter.println(message);
+//        BufferedReader reader = new BufferedReader(new InputStreamReader(new ByteArrayInputStream(message.getBytes(StandardCharsets.UTF_8)), StandardCharsets.UTF_8));
+//        String line;
+//        while ((line = reader.readLine()) != null) {
+//            printWriter.println(line);
+//        }
+//        reader.close();
     }
 }
