@@ -17,7 +17,7 @@ public class HelloServlet extends HttpServlet {
         resp.setContentType("text/plain;charset=UTF-8");
 
         String message = "Привет мир!";
-        final PrintWriter printWriter = resp.getWriter();
+        PrintWriter printWriter = resp.getWriter();
         BufferedReader reader = new BufferedReader(new InputStreamReader(new ByteArrayInputStream(message.getBytes(StandardCharsets.UTF_8)), StandardCharsets.UTF_8));
         String line;
         while ((line = reader.readLine()) != null) {
