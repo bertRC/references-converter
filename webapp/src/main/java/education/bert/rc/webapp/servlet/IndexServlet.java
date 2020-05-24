@@ -1,7 +1,5 @@
 package education.bert.rc.webapp.servlet;
 
-import education.bert.rc.analyzer.service.Analyzer;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,12 +11,6 @@ import java.util.List;
 
 @WebServlet(name = "IndexServlet", urlPatterns = "")
 public class IndexServlet extends HttpServlet {
-
-    @Override
-    public void init() {
-        final Analyzer analyzer = (Analyzer) this.getServletContext().getAttribute("analyzer");
-        System.out.println(analyzer.getLanguage("привет"));
-    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
