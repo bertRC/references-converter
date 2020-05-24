@@ -1,5 +1,7 @@
 package education.bert.rc.webapp.servlet;
 
+import education.bert.rc.analyzer.service.Analyzer;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,6 +15,12 @@ import java.util.List;
 public class IndexServlet extends HttpServlet {
 
     @Override
+    public void init() {
+        final Analyzer analyzer = (Analyzer) this.getServletContext().getAttribute("analyzer");
+        System.out.println(analyzer.getLanguage("привет"));
+    }
+
+    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher("index.jsp").forward(req, resp);
     }
@@ -23,7 +31,6 @@ public class IndexServlet extends HttpServlet {
         System.out.println(text);
         final List<String> strings = Arrays.asList(text.split("(\r\n)|(\n\r)|[\r\n]"));
         this.getServletContext().setAttribute("strings", strings);
-
         resp.sendRedirect("/");
     }
 }
