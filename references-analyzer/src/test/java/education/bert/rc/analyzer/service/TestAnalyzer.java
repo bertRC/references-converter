@@ -1,6 +1,6 @@
 package education.bert.rc.analyzer.service;
 
-import education.bert.rc.utils.colors.console.BibColors;
+import education.bert.rc.utils.colors.console.BibConsoleColors;
 import education.bert.rc.utils.file.service.FileService;
 import education.bert.rc.utils.repository.*;
 import org.junit.jupiter.api.Disabled;
@@ -33,7 +33,7 @@ public class TestAnalyzer {
         System.out.println("[INFO] Symbols recognized: " + symbolCoverage);
         System.out.println("[INFO] Recognition: " + recognition + "%");
         System.out.println("[INFO] Analysis took " + duration + " milliseconds");
-        bibliographies.forEach(BibColors::printlnColorize);
+        bibliographies.forEach(BibConsoleColors::printlnColorize);
     }
 
     @Test
