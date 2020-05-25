@@ -7,7 +7,7 @@
 </head>
 <body>
 
-<% String str = "<span style=\"color: rgb(255,0,0)\">Tho</span>rnton"; %>
+<% String str = (String) request.getAttribute("coloredText"); %>
 <table class="table table-sm table-hover">
     <thead>
     <tr>
