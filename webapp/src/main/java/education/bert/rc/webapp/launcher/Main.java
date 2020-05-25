@@ -1,7 +1,5 @@
 package education.bert.rc.webapp.launcher;
 
-import education.bert.rc.analyzer.service.Analyzer;
-import education.bert.rc.generator.collection.TemplateCollection;
 import org.apache.catalina.WebResourceRoot;
 import org.apache.catalina.WebResourceSet;
 import org.apache.catalina.core.StandardContext;
@@ -78,10 +76,10 @@ public class Main {
         ctx.setRequestCharacterEncoding("UTF-8");
         ctx.setResponseCharacterEncoding("UTF-8");
 
-        final Analyzer analyzer = new Analyzer();
-        final TemplateCollection templateCollection = new TemplateCollection();
-        ctx.getServletContext().setAttribute("analyzer", analyzer);
-        ctx.getServletContext().setAttribute("templateCollection", templateCollection);
+//        final Analyzer analyzer = new Analyzer();
+//        final TemplateCollection templateCollection = new TemplateCollection();
+//        ctx.getServletContext().setAttribute("analyzer", analyzer);
+//        ctx.getServletContext().setAttribute("templateCollection", templateCollection);
 
         tomcat.start();
         tomcat.getServer().await();

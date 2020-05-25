@@ -8,7 +8,7 @@ import lombok.NonNull;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BibColors {
+public class BibConsoleColors {
     public static void printlnColorize(@NonNull RawBibliography bibliography) {
         System.out.println(colorize(bibliography));
     }
