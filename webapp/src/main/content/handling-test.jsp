@@ -61,8 +61,9 @@
         <div class="col-2">
             <div style="position: sticky; top: 56px">
                 <h1>Hello World!!!</h1>
-                <h2 id="myElement"><%= (String) request.getAttribute("someText") %></h2>
-<%--                <h2 id="myElement">${someText}</h2>--%>
+                <h2 id="myElement"><%= (String) request.getAttribute("someText") %>
+                </h2>
+                <%--                <h2 id="myElement">${someText}</h2>--%>
             </div>
         </div>
         <div class="col">
@@ -285,6 +286,19 @@
         console.log(row_index);
         // alert(row_index);
     });
+</script>
+
+<script>
+    const myConst = 'AAA';
+    $(document).ready(doWork());
+
+    function doWork() {
+        $.get('/scriptHandler', {scriptToServlet: myConst}, function (resp) {
+            // console.log(resp);
+            $('#myElement').text(resp);
+        })
+        setTimeout(doWork, 1000);
+    }
 </script>
 
 </body>
