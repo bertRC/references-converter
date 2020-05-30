@@ -10,6 +10,7 @@ import java.util.List;
 
 public class HtmlColors {
 
+    //<span style="background: linear-gradient(transparent, red, transparent)">
     public static final String ERROR_COLOR = "rgba(255,64,64,0.4)";
     public static final String TITLE_COLOR = "rgba(23,162,184,0.2)";
     public static final String JOURNAL_COLOR = "rgba(0,32,164,0.2)";
