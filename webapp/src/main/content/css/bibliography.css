@@ -3,3 +3,40 @@
     top: 56px;
     box-shadow: 0 0 0 1px lightgray;
 }
+
+.bib-error {
+    background-color: rgba(255, 64, 64, 0.4);
+    /*background: linear-gradient(transparent, red, transparent);*/
+}
+
+.bib-title {
+    background-color: rgba(23, 162, 184, 0.2);
+}
+
+.bib-journal {
+    background-color: rgba(0, 32, 164, 0.2);
+}
+
+.bib-author {
+    background-color: rgba(230, 192, 0, 0.2);
+}
+
+.bib-year {
+    background-color: rgba(210, 0, 192, 0.2);
+}
+
+.bib-volume {
+    background-color: rgba(40, 167, 69, 0.2);
+}
+
+.bib-number {
+    background-color: rgba(110, 170, 40, 0.2);
+}
+
+.bib-other {
+    background-color: rgba(0, 150, 0, 0.2);
+}
+
+.bib-page {
+    background-color: rgba(0, 123, 255, 0.2);
+}
