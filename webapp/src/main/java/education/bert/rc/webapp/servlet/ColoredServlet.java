@@ -20,9 +20,9 @@ public class ColoredServlet extends HttpServlet {
         final Analyzer analyzer = new Analyzer();
         String text = "1. Белев, Д.О. / Некоторые анализы средневековой системы дальше не стал / Д. О. Белев, И.П. Сидоров, Ф.Р.  Мобо, М.А.Венхофф // Био. Мат. - 1998. - Т. 14. - С. 3397-3503. [http...]";
         coloredText = CssColors.colorize(analyzer.analyze(text)) + "<br>"
-                + CssColors.colorize("V. 15.", CssColors.VOLUME_COLOR) + " - "
-                + CssColors.colorize("N. 12.", CssColors.NUMBER_COLOR) + " - "
-                + CssColors.colorize("Issue 2.", CssColors.OTHER_COLOR);
+                + CssColors.colorize("V. 15.", CssColors.VOLUME_STYLE) + " - "
+                + CssColors.colorize("N. 12.", CssColors.NUMBER_STYLE) + " - "
+                + CssColors.colorize("Issue 2.", CssColors.OTHER_STYLE);
 
     }
 
