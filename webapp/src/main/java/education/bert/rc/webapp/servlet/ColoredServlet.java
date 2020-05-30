@@ -1,7 +1,7 @@
 package education.bert.rc.webapp.servlet;
 
 import education.bert.rc.analyzer.service.Analyzer;
-import education.bert.rc.utils.colors.css.HtmlColors;
+import education.bert.rc.utils.colors.css.CssColors;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,10 +19,10 @@ public class ColoredServlet extends HttpServlet {
     public void init() {
         final Analyzer analyzer = new Analyzer();
         String text = "1. Белев, Д.О. / Некоторые анализы средневековой системы дальше не стал / Д. О. Белев, И.П. Сидоров, Ф.Р.  Мобо, М.А.Венхофф // Био. Мат. - 1998. - Т. 14. - С. 3397-3503. [http...]";
-        coloredText = HtmlColors.colorize(analyzer.analyze(text)) + "<br>"
-                + HtmlColors.colorize("V. 15.", HtmlColors.VOLUME_COLOR) + " - "
-                + HtmlColors.colorize("N. 12.", HtmlColors.NUMBER_COLOR) + " - "
-                + HtmlColors.colorize("Issue 2.", HtmlColors.OTHER_COLOR);
+        coloredText = CssColors.colorize(analyzer.analyze(text)) + "<br>"
+                + CssColors.colorize("V. 15.", CssColors.VOLUME_COLOR) + " - "
+                + CssColors.colorize("N. 12.", CssColors.NUMBER_COLOR) + " - "
+                + CssColors.colorize("Issue 2.", CssColors.OTHER_COLOR);
 
     }
 

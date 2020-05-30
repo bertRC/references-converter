@@ -8,7 +8,7 @@ import lombok.NonNull;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HtmlColors {
+public class CssColors {
 
     //<span style="background: linear-gradient(transparent, red, transparent)">
     public static final String ERROR_COLOR = "rgba(255,64,64,0.4)";
