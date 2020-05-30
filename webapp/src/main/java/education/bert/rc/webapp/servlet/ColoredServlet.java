@@ -1,7 +1,7 @@
 package education.bert.rc.webapp.servlet;
 
 import education.bert.rc.analyzer.service.Analyzer;
-import education.bert.rc.utils.colors.html.HtmlColors;
+import education.bert.rc.utils.colors.css.HtmlColors;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

@@ -1,4 +1,4 @@
-package education.bert.rc.utils.colors.html;
+package education.bert.rc.utils.colors.css;
 
 import education.bert.rc.utils.repository.RawBibliography;
 import education.bert.rc.utils.repository.SegmentComparator;
