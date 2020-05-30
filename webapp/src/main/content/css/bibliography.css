@@ -5,38 +5,37 @@
 }
 
 .bib-error {
-    background-color: rgba(255, 64, 64, 0.4);
-    /*background: linear-gradient(transparent, red, transparent);*/
+    background: linear-gradient(transparent, rgba(255, 64, 64, 0.5), transparent);
 }
 
 .bib-title {
-    background-color: rgba(23, 162, 184, 0.2);
+    background: linear-gradient(transparent, rgba(23, 162, 184, 0.3), transparent);
 }
 
 .bib-journal {
-    background-color: rgba(0, 32, 164, 0.2);
+    background: linear-gradient(transparent, rgba(0, 32, 164, 0.3), transparent);
 }
 
 .bib-author {
-    background-color: rgba(230, 192, 0, 0.2);
+    background: linear-gradient(transparent, rgba(230, 192, 0, 0.3), transparent);
 }
 
 .bib-year {
-    background-color: rgba(210, 0, 192, 0.2);
+    background: linear-gradient(transparent, rgba(210, 0, 192, 0.3), transparent);
 }
 
 .bib-volume {
-    background-color: rgba(40, 167, 69, 0.2);
+    background: linear-gradient(transparent, rgba(40, 167, 69, 0.3), transparent);
 }
 
 .bib-number {
-    background-color: rgba(110, 170, 40, 0.2);
+    background: linear-gradient(transparent, rgba(110, 170, 40, 0.3), transparent);
 }
 
 .bib-other {
-    background-color: rgba(0, 150, 0, 0.2);
+    background: linear-gradient(transparent, rgba(0, 150, 0, 0.3), transparent);
 }
 
 .bib-page {
-    background-color: rgba(0, 123, 255, 0.2);
+    background: linear-gradient(transparent, rgba(0, 123, 255, 0.3), transparent);
 }
