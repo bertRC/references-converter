@@ -1,0 +1,5 @@
+.table-fixed thead tr th {
+    position: sticky;
+    top: 56px;
+    box-shadow: 0 0 0 1px lightgray;
+}

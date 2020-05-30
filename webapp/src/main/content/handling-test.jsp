@@ -5,11 +5,7 @@
     <%@ include file="bootstrap-css.jsp" %>
 
     <style>
-        thead tr th {
-            position: sticky;
-            top: 56px;
-            box-shadow: 1px 0 lightgray;
-        }
+        <%@ include file="css/bibliography.css" %>
     </style>
 
     <title>Hello, world!</title>
@@ -61,13 +57,12 @@
         <div class="col-2">
             <div style="position: sticky; top: 56px">
                 <h1>Hello World!!!</h1>
-                <h2 id="myElement"><%= (String) request.getAttribute("someText") %>
-                </h2>
-                <%--                <h2 id="myElement">${someText}</h2>--%>
+<%--                <h2 id="myElement"><%= (String) request.getAttribute("someText") %></h2>--%>
+                                <h2 id="myElement">${someText}</h2>
             </div>
         </div>
         <div class="col">
-            <table class="table table-hover table-bordered table-sm" id="myTable">
+            <table class="table table-hover table-bordered table-sm table-fixed" id="myTable">
                 <thead class="thead-light">
                 <tr>
                     <th scope="col">#</th>
@@ -281,24 +276,7 @@
 <%@ include file="bootstrap-scripts.jsp" %>
 
 <script>
-    $('tr').click(function () {
-        var row_index = $(this).index();
-        console.log(row_index);
-        // alert(row_index);
-    });
-</script>
-
-<script>
-    const myConst = 'AAA';
-    $(document).ready(doWork());
-
-    function doWork() {
-        $.get('/scriptHandler', {scriptToServlet: myConst}, function (resp) {
-            // console.log(resp);
-            $('#myElement').text(resp);
-        })
-        setTimeout(doWork, 1000);
-    }
+    <%@include file="js/myScript.js" %>
 </script>
 
 </body>
