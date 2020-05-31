@@ -7,7 +7,7 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
     <div class="container col-9">
         <a class="navbar-brand mb-0 h1" href="<%= request.getContextPath() %>">RC</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -22,10 +22,23 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">Результаты</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Настройка шаблонов</a>
+                </li>
                 <li class="nav-item mr-5"></li>
                 <li class="nav-item">
-                    <button type="submit" form="inputForm" class="btn btn-outline-primary">Обработать
-                    </button>
+                    <div class="input-group">
+                        <select class="custom-select" aria-label="" disabled>
+                            <option selected>Шаблоны не доступны</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-primary" type="submit" form="inputForm">Преобразовать
+                            </button>
+                        </div>
+                    </div>
                 </li>
             </ul>
             <ul class="navbar-nav">
@@ -39,7 +52,7 @@
 
 <div class="container col-9">
     <form method="POST" action="<%= request.getContextPath() %>" id="inputForm">
-            <textarea class="form-control" aria-label="" name="text" placeholder="Введите текст"
+            <textarea class="form-control" aria-label="" name="text" placeholder="Введите библиографические ссылки..."
                       style="height: calc(100vh - 5rem); min-height: 150px; resize: none"></textarea>
     </form>
 </div>
