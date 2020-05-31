@@ -14,7 +14,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
     <div class="container" style="max-width: 1440px">
-        <a class="navbar-brand mb-0 h1" href="<%= request.getContextPath() %>">RC</a>
+        <a class="navbar-brand mb-0 h1" href="./">RC</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -22,10 +22,10 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="<%= request.getContextPath() %>">Главная</a>
+                    <a class="nav-link" href="./">Главная</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="<%= request.getContextPath() + "/result" %>">Результаты</a>
+                    <a class="nav-link" href="./result">Результаты</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Настройка шаблонов</a>
