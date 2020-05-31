@@ -2,6 +2,7 @@ package education.bert.rc.webapp.servlet;
 
 import education.bert.rc.analyzer.service.Analyzer;
 import education.bert.rc.generator.collection.TemplateCollection;
+import education.bert.rc.utils.colors.css.CssColors;
 import education.bert.rc.utils.misc.Separator;
 import education.bert.rc.utils.repository.Bibliography;
 
@@ -39,10 +40,12 @@ public class IndexServlet extends HttpServlet {
         if (!inputText.isEmpty()) {
             final List<String> inputStrings = Separator.separate(inputText);
             final List<Bibliography> bibliographies = analyzer.analyze(inputStrings);
+            final List<String> coloredStrings = CssColors.colorize(bibliographies);
             final List<String> results = templateCollection.getAll().get(0).generate(bibliographies);
 
             session.setAttribute("lineSeparator", Separator.getLineSeparator(inputText));
             session.setAttribute("bibliographies", bibliographies);
+            session.setAttribute("coloredStrings", coloredStrings);
             session.setAttribute("results", results);
         }
         resp.sendRedirect("/result");
