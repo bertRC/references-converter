@@ -104,11 +104,15 @@ public class Templates {
 
     private static String fulfillSome(@NonNull String value, @NonNull String template, @NonNull Pattern pattern) {
         String result = template;
-        final Matcher matcher = pattern.matcher(template);
+        Pattern newPattern = pattern;
+        if (value.endsWith(".")) {
+            newPattern = Pattern.compile(pattern.pattern() + "\\.?");
+        }
+        final Matcher matcher = newPattern.matcher(template);
         while (matcher.find()) {
             final String innerTemplate = matcher.group("template");
             result = result.replaceFirst(
-                    pattern.pattern(),
+                    newPattern.pattern(),
                     prepareSome(value, innerTemplate == null ? "?" : innerTemplate)
             );
         }
