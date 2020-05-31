@@ -8,7 +8,7 @@
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
-    <div class="container col-9">
+    <div class="container" style="max-width: 1440px">
         <a class="navbar-brand mb-0 h1" href="<%= request.getContextPath() %>">RC</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -50,7 +50,7 @@
     </div>
 </nav>
 
-<div class="container col-9">
+<div class="container" style="max-width: 1440px">
     <form method="POST" action="<%= request.getContextPath() %>" id="inputForm">
             <textarea class="form-control" aria-label="" name="inputText" placeholder="Введите библиографические ссылки..."
                       style="height: calc(100vh - 5rem); min-height: 150px; resize: none"></textarea>
