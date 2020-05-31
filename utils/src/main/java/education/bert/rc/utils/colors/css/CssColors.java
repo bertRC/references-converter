@@ -7,6 +7,7 @@ import lombok.NonNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CssColors {
 
@@ -22,6 +23,10 @@ public class CssColors {
 
     public static String colorize(@NonNull String text, @NonNull String styleClass) {
         return "<span class=\"" + styleClass + "\">" + text + "</span>";
+    }
+
+    public static List<String> colorize(@NonNull List<? extends RawBibliography> bibliographies) {
+        return bibliographies.parallelStream().map(CssColors::colorize).collect(Collectors.toList());
     }
 
     public static String colorize(@NonNull RawBibliography bibliography) {
