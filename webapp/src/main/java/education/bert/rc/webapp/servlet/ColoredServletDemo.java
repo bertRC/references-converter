@@ -17,7 +17,7 @@ public class ColoredServletDemo extends HttpServlet {
 
     @Override
     public void init() {
-        final Analyzer analyzer = new Analyzer();
+        final Analyzer analyzer = (Analyzer) this.getServletContext().getAttribute("analyzer");
         String text = "1. Белев, Д.О. / Некоторые анализы средневековой системы дальше не стал / Д. О. Белев, И.П. Сидоров, Ф.Р.  Мобо, М.А.Венхофф // Био. Мат. - 1998. - Т. 14. - С. 3397-3503. [http...]";
         coloredText = CssColors.colorize(analyzer.analyze(text)) + "<br>"
                 + CssColors.colorize("V. 15.", CssColors.VOLUME_STYLE) + " - "
