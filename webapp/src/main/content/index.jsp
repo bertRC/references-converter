@@ -20,7 +20,7 @@
                     <a class="nav-link" href="<%= request.getContextPath() %>">Главная</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<%= request.getContextPath() %>/result">Результаты</a>
+                    <a class="nav-link" href="<%= request.getContextPath() + "/result" %>">Результаты</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Настройка шаблонов</a>
@@ -52,7 +52,8 @@
 
 <div class="container" style="max-width: 1440px">
     <form method="POST" action="<%= request.getContextPath() %>" id="inputForm">
-            <textarea class="form-control" aria-label="" name="inputText" placeholder="Введите библиографические ссылки..."
+            <textarea class="form-control" aria-label="" name="inputText"
+                      placeholder="Введите библиографические ссылки..."
                       style="height: calc(100vh - 5rem); min-height: 150px; resize: none"></textarea>
     </form>
 </div>
