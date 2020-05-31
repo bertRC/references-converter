@@ -5,6 +5,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
@@ -19,10 +20,12 @@ public class IndexServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        final String text = req.getParameter("text");
-        System.out.println(text);
+        HttpSession session = req.getSession();
+        final String text = req.getParameter("inputText");
+//        System.out.println(text);
         final List<String> strings = Arrays.asList(text.split("(\r\n)|(\n\r)|[\r\n]"));
-        this.getServletContext().setAttribute("strings", strings);
-        resp.sendRedirect("/");
+//        this.getServletContext().setAttribute("strings", strings);
+        session.setAttribute("strings", strings);
+        resp.sendRedirect("/resultDemo");
     }
 }
