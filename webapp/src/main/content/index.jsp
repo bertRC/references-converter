@@ -52,7 +52,7 @@
 
 <div class="container col-9">
     <form method="POST" action="<%= request.getContextPath() %>" id="inputForm">
-            <textarea class="form-control" aria-label="" name="text" placeholder="Введите библиографические ссылки..."
+            <textarea class="form-control" aria-label="" name="inputText" placeholder="Введите библиографические ссылки..."
                       style="height: calc(100vh - 5rem); min-height: 150px; resize: none"></textarea>
     </form>
 </div>
