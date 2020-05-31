@@ -20,7 +20,7 @@
                     <a class="nav-link" href="<%= request.getContextPath() %>">Главная</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Результаты</a>
+                    <a class="nav-link" href="<%= request.getContextPath() %>/result">Результаты</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Настройка шаблонов</a>
