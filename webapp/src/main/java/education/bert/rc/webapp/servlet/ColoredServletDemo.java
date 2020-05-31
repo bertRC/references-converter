@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "ColoredServlet", urlPatterns = "/colored")
-public class ColoredServlet extends HttpServlet {
+@WebServlet(name = "ColoredServletDemo", urlPatterns = "/colored")
+public class ColoredServletDemo extends HttpServlet {
 
     private String coloredText;
 
