@@ -41,7 +41,7 @@
                         </select>
                         <div class="input-group-append">
                             <button class="btn btn-outline-primary" type="button" disabled>Преобразовать</button>
-                            <button class="btn btn-outline-primary" type="button" onclick="myFunction()">Скопировать
+                            <button class="btn btn-outline-primary" type="button" onclick="copyFunction()">Скопировать
                                 результаты
                             </button>
                         </div>
@@ -77,5 +77,10 @@
 </div>
 
 <%@ include file="bootstrap-scripts.jsp" %>
+
+<script>
+    <%@ include file="js/copy-result.js" %>
+</script>
+
 </body>
 </html>
