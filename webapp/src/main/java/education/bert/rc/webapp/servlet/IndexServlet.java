@@ -38,15 +38,18 @@ public class IndexServlet extends HttpServlet {
         HttpSession session = req.getSession();
         final String inputText = req.getParameter("inputText");
         if (!inputText.isEmpty()) {
+            final String lineSeparator = Separator.getLineSeparator(inputText);
             final List<String> inputStrings = Separator.separate(inputText);
             final List<Bibliography> bibliographies = analyzer.analyze(inputStrings);
             final List<String> coloredStrings = CssColors.colorize(bibliographies);
             final List<String> results = templateCollection.getAll().get(0).generate(bibliographies);
+            final String resultsInLine = Separator.join(results, lineSeparator);
 
-            session.setAttribute("lineSeparator", Separator.getLineSeparator(inputText));
+            session.setAttribute("lineSeparator", lineSeparator);
             session.setAttribute("bibliographies", bibliographies);
             session.setAttribute("coloredStrings", coloredStrings);
             session.setAttribute("results", results);
+            session.setAttribute("resultsInLine", resultsInLine);
         }
         resp.sendRedirect("/result");
     }
