@@ -1,22 +1,30 @@
 package education.bert.rc.webapp.servlet;
 
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
 
-@WebServlet(name = "ResultServlet", urlPatterns = "/result")
+@WebServlet(name = "ResultServlet", urlPatterns = {"/result", "/copyResult"})
 public class ResultServlet extends HttpServlet {
+
+    private String resultsInLine;
+
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        resp.setContentType("text/plain;charset=UTF-8");
-        final List<String> strings = (List<String>) this.getServletContext().getAttribute("strings");
-        if (strings != null) {
-            PrintWriter printWriter = resp.getWriter();
-            strings.forEach(printWriter::println);
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        switch (req.getRequestURI()) {
+            case "/result":
+                HttpSession session = req.getSession();
+                resultsInLine = (String) session.getAttribute("resultsInLine");
+                req.getRequestDispatcher("result.jsp").forward(req, resp);
+                break;
+            case "/copyResult":
+                if (resultsInLine != null) {
+                    resp.getWriter().write(resultsInLine);
+                }
         }
     }
 }

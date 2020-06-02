@@ -20,7 +20,7 @@ public class TemplateCollection {
                 "<firstAuthor=\"Ivanov, I.I.\"> / <title> / <authors=\"I.I. Ivanov\">. – <journal>, <year>.<vol=\" Т. ?.\"><num=\" – №. ?.\"><pages=\" – ? с.\">."
         ));
 
-        templates.add(new BibTeXTemplate("BibTeX"));
+//        templates.add(new BibTeXTemplate("BibTeX"));
     }
 
     public List<Template> getAll() {

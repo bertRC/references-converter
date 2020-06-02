@@ -14,7 +14,7 @@ public class TestTemplateCollection {
     @Test
     public void testGost() {
         final TemplateCollection collection = new TemplateCollection();
-        final String expected = "Белев, Д.О. / Некоторые анализы средневековой системы дальше не стал / Д.О. Белев, И.П. Сидоров, Ф.Р. Мобо, М.А. Венхофф // Био. Мат.. – 1998. – Т. 14. – С. 3397-3503.";
+        final String expected = "Белев, Д.О. / Некоторые анализы средневековой системы дальше не стал / Д.О. Белев, И.П. Сидоров, Ф.Р. Мобо, М.А. Венхофф // Био. Мат. – 1998. – Т. 14. – С. 3397-3503.";
         List<Bibliography> bibliographies = new ArrayList<>();
         bibliographies.add(new Bibliography(
                 "1. Белев, Д.О. / Некоторые анализы средневековой системы дальше не стал / Д. О. Белев, И.П. Сидоров, Ф.Р.  Мобо, М.А.Венхофф // Био. Мат. - 1998. - Т. 14. - С. 3397-3503. [http...]",

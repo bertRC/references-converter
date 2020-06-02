@@ -1,0 +1,42 @@
+.table-fixed thead tr th {
+    font-weight: normal;
+    position: sticky;
+    top: 56px;
+    box-shadow: 0 0 0 1px lightgray;
+}
+
+.bib-error {
+    background: linear-gradient(transparent, rgba(255, 64, 64, 0.5), transparent);
+}
+
+.bib-title {
+    background: linear-gradient(transparent, rgba(23, 162, 184, 0.3), transparent);
+}
+
+.bib-journal {
+    background: linear-gradient(transparent, rgba(0, 32, 164, 0.3), transparent);
+}
+
+.bib-author {
+    background: linear-gradient(transparent, rgba(230, 192, 0, 0.3), transparent);
+}
+
+.bib-year {
+    background: linear-gradient(transparent, rgba(210, 0, 192, 0.3), transparent);
+}
+
+.bib-volume {
+    background: linear-gradient(transparent, rgba(40, 167, 69, 0.3), transparent);
+}
+
+.bib-number {
+    background: linear-gradient(transparent, rgba(110, 170, 40, 0.3), transparent);
+}
+
+.bib-other {
+    background: linear-gradient(transparent, rgba(0, 150, 0, 0.3), transparent);
+}
+
+.bib-page {
+    background: linear-gradient(transparent, rgba(0, 123, 255, 0.3), transparent);
+}

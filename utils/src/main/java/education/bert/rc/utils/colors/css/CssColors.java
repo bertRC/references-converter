@@ -1,4 +1,4 @@
-package education.bert.rc.utils.colors.html;
+package education.bert.rc.utils.colors.css;
 
 import education.bert.rc.utils.repository.RawBibliography;
 import education.bert.rc.utils.repository.SegmentComparator;
@@ -7,21 +7,26 @@ import lombok.NonNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class HtmlColors {
+public class CssColors {
 
-    public static final String ERROR_COLOR = "rgba(255,64,64,0.4)";
-    public static final String TITLE_COLOR = "rgba(23,162,184,0.2)";
-    public static final String JOURNAL_COLOR = "rgba(0,32,164,0.2)";
-    public static final String AUTHOR_COLOR = "rgba(230,192,0,0.2)";
-    public static final String YEAR_COLOR = "rgba(210,0,192,0.2)";
-    public static final String VOLUME_COLOR = "rgba(40,167,69,0.2)";
-    public static final String NUMBER_COLOR = "rgba(110,170,40,0.2)";
-    public static final String OTHER_COLOR = "rgba(0,150,0,0.2)";
-    public static final String PAGE_COLOR = "rgba(0,123,255,0.2)";
+    public static final String ERROR_STYLE = "bib-error";
+    public static final String TITLE_STYLE = "bib-title";
+    public static final String JOURNAL_STYLE = "bib-journal";
+    public static final String AUTHOR_STYLE = "bib-author";
+    public static final String YEAR_STYLE = "bib-year";
+    public static final String VOLUME_STYLE = "bib-volume";
+    public static final String NUMBER_STYLE = "bib-number";
+    public static final String OTHER_STYLE = "bib-other";
+    public static final String PAGE_STYLE = "bib-page";
 
-    public static String colorize(@NonNull String text, @NonNull String color) {
-        return "<span style=\"background-color: " + color + "\">" + text + "</span>";
+    public static String colorize(@NonNull String text, @NonNull String styleClass) {
+        return "<span class=\"" + styleClass + "\">" + text + "</span>";
+    }
+
+    public static List<String> colorize(@NonNull List<? extends RawBibliography> bibliographies) {
+        return bibliographies.parallelStream().map(CssColors::colorize).collect(Collectors.toList());
     }
 
     public static String colorize(@NonNull RawBibliography bibliography) {
@@ -39,34 +44,34 @@ public class HtmlColors {
             final StringSegment page = bibliography.getPage();
 
             if (!prefix.getText().isEmpty()) {
-                segments.add(new StringSegment(prefix, ERROR_COLOR));
+                segments.add(new StringSegment(prefix, ERROR_STYLE));
             }
             if (!suffix.getText().isEmpty()) {
-                segments.add(new StringSegment(suffix, ERROR_COLOR));
+                segments.add(new StringSegment(suffix, ERROR_STYLE));
             }
             if (!title.getText().isEmpty()) {
-                segments.add(new StringSegment(title, TITLE_COLOR));
+                segments.add(new StringSegment(title, TITLE_STYLE));
             }
             if (!journal.getText().isEmpty()) {
-                segments.add(new StringSegment(journal, JOURNAL_COLOR));
+                segments.add(new StringSegment(journal, JOURNAL_STYLE));
             }
             if (!authorGroup.getText().isEmpty()) {
-                segments.add(new StringSegment(authorGroup, AUTHOR_COLOR));
+                segments.add(new StringSegment(authorGroup, AUTHOR_STYLE));
             }
             if (!year.getText().isEmpty()) {
-                segments.add(new StringSegment(year, YEAR_COLOR));
+                segments.add(new StringSegment(year, YEAR_STYLE));
             }
             if (!vol.getText().isEmpty()) {
-                segments.add(new StringSegment(vol, VOLUME_COLOR));
+                segments.add(new StringSegment(vol, VOLUME_STYLE));
             }
             if (!num.getText().isEmpty()) {
-                segments.add(new StringSegment(num, NUMBER_COLOR));
+                segments.add(new StringSegment(num, NUMBER_STYLE));
             }
             if (!other.getText().isEmpty()) {
-                segments.add(new StringSegment(other, OTHER_COLOR));
+                segments.add(new StringSegment(other, OTHER_STYLE));
             }
             if (!page.getText().isEmpty()) {
-                segments.add(new StringSegment(page, PAGE_COLOR));
+                segments.add(new StringSegment(page, PAGE_STYLE));
             }
 
             segments.sort(new SegmentComparator());
@@ -74,11 +79,12 @@ public class HtmlColors {
             segments.forEach(segment -> colorizeSegment(stringBuilder, segment));
             return stringBuilder.toString();
         }
-        return colorize(bibliography.getText(), ERROR_COLOR);
+//        return colorize(bibliography.getText(), ERROR_STYLE);
+        return bibliography.getText();
     }
 
     private static void colorizeSegment(@NonNull StringBuilder stringBuilder, @NonNull StringSegment coloredSegment) {
         stringBuilder.insert(coloredSegment.getEnd(), "</span>");
-        stringBuilder.insert(coloredSegment.getStart(), "<span style=\"background-color: " + coloredSegment.getText() + "\">");
+        stringBuilder.insert(coloredSegment.getStart(), "<span class=\"" + coloredSegment.getText() + "\">");
     }
 }

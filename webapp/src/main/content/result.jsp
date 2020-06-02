@@ -1,8 +1,15 @@
+<%@ page import="java.util.List" %>
+<%@ page import="education.bert.rc.utils.repository.Bibliography" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%@ include file="bootstrap-css.jsp" %>
+
+    <style>
+        <%@ include file="css/bibliography.css" %>
+    </style>
+
     <title>References Converter</title>
 </head>
 <body>
@@ -15,10 +22,10 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="./">Главная</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="./result">Результаты</a>
             </li>
             <li class="nav-item">
@@ -34,7 +41,9 @@
                         <option value="3">Three</option>
                     </select>
                     <div class="input-group-append">
-                        <button class="btn btn-outline-primary" type="submit" form="inputForm">Преобразовать
+                        <button class="btn btn-outline-primary" type="button" disabled>Преобразовать</button>
+                        <button class="btn btn-outline-primary" type="button" onclick="copyFunction()">
+                            Скопировать результаты
                         </button>
                     </div>
                 </div>
@@ -48,14 +57,45 @@
     </div>
 </nav>
 
+<% List<String> coloredStrings = (List<String>) session.getAttribute("coloredStrings"); %>
+<% List<String> results = (List<String>) session.getAttribute("results"); %>
+<% List<Bibliography> bibliographies = (List<Bibliography>) session.getAttribute("bibliographies"); %>
 <div>
-    <form method="POST" action="<%= request.getContextPath() %>" id="inputForm">
-            <textarea class="form-control" aria-label="" name="inputText"
-                      placeholder="Введите библиографические ссылки..."
-                      style="height: calc(100vh - 5rem); min-height: 150px; resize: none"></textarea>
-    </form>
+    <table class="table table-hover table-bordered table-sm table-fixed" id="myTable">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">№</th>
+            <th scope="col" style="width: 50%">Исходные данные</th>
+            <th scope="col" style="width: 50%">Результат преобразования</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% if (coloredStrings != null && results != null) {
+            for (int i = 0; i < coloredStrings.size(); i++) {
+                if (bibliographies.get(i).isEmpty()) {
+        %>
+        <tr class="table-danger">
+                <% } else { %>
+        <tr>
+            <% } %>
+            <td><%= i + 1 %>
+            </td>
+            <td><%= coloredStrings.get(i) %>
+            </td>
+            <td><%= results.get(i) %>
+            </td>
+        </tr>
+        <% }
+        } %>
+        </tbody>
+    </table>
 </div>
 
 <%@ include file="bootstrap-scripts.jsp" %>
+
+<script>
+    <%@ include file="js/copy-result.js" %>
+</script>
+
 </body>
 </html>
