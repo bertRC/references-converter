@@ -8,8 +8,6 @@
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
-    <%--    <div class="container" style="max-width: 1440px">--%>
-    <%--    <div class="container" style="max-width: 100vw">--%>
     <a class="navbar-brand mb-0 h1" href="./">RC</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -48,10 +46,8 @@
             </li>
         </ul>
     </div>
-    <%--    </div>--%>
 </nav>
 
-<%--<div class="container" style="max-width: 1440px">--%>
 <div>
     <form method="POST" action="<%= request.getContextPath() %>" id="inputForm">
             <textarea class="form-control" aria-label="" name="inputText"
