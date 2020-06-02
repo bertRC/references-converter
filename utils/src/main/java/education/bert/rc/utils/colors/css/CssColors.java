@@ -79,7 +79,8 @@ public class CssColors {
             segments.forEach(segment -> colorizeSegment(stringBuilder, segment));
             return stringBuilder.toString();
         }
-        return colorize(bibliography.getText(), ERROR_STYLE);
+//        return colorize(bibliography.getText(), ERROR_STYLE);
+        return bibliography.getText();
     }
 
     private static void colorizeSegment(@NonNull StringBuilder stringBuilder, @NonNull StringSegment coloredSegment) {
