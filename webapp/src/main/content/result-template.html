@@ -17,8 +17,34 @@
             box-shadow: 0 0 0 1px lightgray;
         }
 
+        /*.btn-icon {*/
+        /*    min-height: 38px;*/
+        /*    background-color: #023980;*/
+        /*    border: none;*/
+        /*}*/
         .btn-icon {
-            min-height: 38px;
+            /*width: 38px;*/
+            height: 38px;
+            color: lightgray;
+            background-color: #023980;
+            border: none;
+            outline: none;
+        }
+        .btn-icon:focus {
+            /*width: 38px;*/
+            height: 38px;
+            color: lightgray;
+            background-color: #023980;
+            border: none;
+            outline: none;
+        }
+        .btn-icon:hover {
+            /*width: 38px;*/
+            height: 38px;
+            color: lightgray;
+            background-color: black;
+            border: none;
+            outline: none;
         }
     </style>
 
@@ -26,7 +52,7 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: #023980">
     <div class="container" style="max-width: 1440px">
         <a class="navbar-brand mb-0 h1" href="/">RC</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -47,14 +73,14 @@
                 <li class="nav-item mr-5"></li>
                 <li class="nav-item mr-1">
                     <div class="input-group">
-                        <select class="custom-select" aria-label="" disabled>
+                        <select class="custom-select" aria-label="">
                             <option selected>Шаблоны не доступны</option>
                             <option value="1">One</option>
                             <option value="2">Two</option>
                             <option value="3">Three</option>
                         </select>
                         <div class="input-group-append">
-                            <button class="btn btn-outline-primary btn-sm" type="button">
+                            <button class="btn btn-primary btn-sm" type="button">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                      fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
                                      stroke-linejoin="round" class="feather feather-play">
@@ -65,7 +91,8 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <button class="btn btn-outline-primary btn-sm btn-icon" type="button" onclick="myFunction()">
+<!--                    <button class="btn btn-primary btn-sm btn-icon" type="button" onclick="myFunction()">-->
+                    <button class="btn btn-icon" type="button" onclick="myFunction()">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                              class="feather feather-copy">
