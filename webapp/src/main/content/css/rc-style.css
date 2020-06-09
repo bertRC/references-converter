@@ -1,7 +1,31 @@
+.btn-icon {
+    height: 38px;
+    color: lightgray;
+    background-color: #023980;
+    border: none;
+    outline: none;
+}
+
+.btn-icon:focus {
+    height: 38px;
+    color: lightgray;
+    background-color: #023980;
+    border: none;
+    outline: none;
+}
+
+.btn-icon:hover {
+    height: 38px;
+    color: white;
+    background-color: #0069d9;
+    border: none;
+    outline: none;
+}
+
 .table-fixed thead tr th {
     font-weight: normal;
     position: sticky;
-    top: 56px;
+    top: 58px;
     box-shadow: 0 0 0 1px lightgray;
 }
 
