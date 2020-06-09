@@ -2,8 +2,8 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <%@ include file="bootstrap-css.jsp" %>
-    <style><%@ include file="css/bibliography.css" %></style>
+    <%@ include file="css-collection.jsp" %>
+    <style><%@ include file="css/rc-style.css" %></style>
     <title>References Converter</title>
 </head>
 <body>
