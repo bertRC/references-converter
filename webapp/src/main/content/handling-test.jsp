@@ -5,7 +5,7 @@
     <%@ include file="bootstrap-css.jsp" %>
 
     <style>
-        <%@ include file="css/bibliography.css" %>
+        <%@ include file="css/rc-style.css" %>
     </style>
 
     <title>Hello, world!</title>
