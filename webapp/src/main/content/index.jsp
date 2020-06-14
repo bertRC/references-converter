@@ -13,7 +13,7 @@
 <%
     TemplateCollection templateCollection =
             (TemplateCollection) getServletConfig().getServletContext().getAttribute("templateCollection");
-    String templateSelected = (String) getServletConfig().getServletContext().getAttribute("templateSelected");
+    String templateSelected = (String) session.getAttribute("templateSelected");
     List<Template> templateList = null;
     if (templateCollection != null) {
         templateList = templateCollection.getAll();
@@ -39,22 +39,21 @@
             </li>
             <li class="nav-item mr-5"></li>
             <li class="nav-item mr-1">
-                <select class="custom-select" aria-label="">
-                    <%--                    <option selected>Шаблоны не доступны</option>--%>
-                    <%--                    <option value="1">One</option>--%>
-                    <%--                    <option value="2">Two</option>--%>
-                    <%--                    <option value="3">Three</option>--%>
-                    <% if (templateList != null) {
-                        for (int i = 0; i < templateList.size(); i++) {
-                    %>
-                    <option value="<%=i%>" <%=String.valueOf(i).equals(templateSelected) ? "selected" : ""%>><%=templateList.get(i).getName()%>
-                    </option>
-                    <% }
-                    } %>
-                </select>
+                <form class="mb-0" method="POST" action="<%= request.getContextPath() %>" id="convertForm">
+                    <select class="custom-select" aria-label="" name="selectTemplate">
+                        <% if (templateList != null) {
+                            for (int i = 0; i < templateList.size(); i++) {
+                        %>
+                        <option value="<%=i%>" <%=String.valueOf(i).equals(templateSelected) ? "selected" : ""%>><%=templateList.get(i).getName()%>
+                        </option>
+                        <% }
+                        } %>
+                    </select>
+                </form>
             </li>
             <li class="nav-item">
-                <button class="btn btn-icon" type="submit" form="inputForm" data-toggle="tooltip" title="Преобразовать">
+                <button class="btn btn-icon" type="submit" form="convertForm" data-toggle="tooltip"
+                        title="Преобразовать">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                          class="feather feather-play">
@@ -78,12 +77,11 @@
     </div>
 </nav>
 
+<% String inputText = (String) session.getAttribute("plainInputText"); %>
 <div>
-    <form class="mb-0" method="POST" action="<%= request.getContextPath() %>" id="inputForm">
-            <textarea class="form-control" aria-label="" name="inputText"
-                      placeholder="Введите библиографические ссылки..."
-                      style="height: calc(100vh - 56px); min-height: 150px; resize: none"></textarea>
-    </form>
+    <textarea class="form-control" aria-label="" name="inputText" form="convertForm"
+              placeholder="Введите библиографические ссылки..."
+              style="height: calc(100vh - 56px); min-height: 150px; resize: none"><%=inputText != null ? inputText : ""%></textarea>
 </div>
 
 <%@ include file="bootstrap-scripts.jsp" %>
