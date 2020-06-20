@@ -36,7 +36,7 @@
                 <a class="nav-link" href="./result">Результаты</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Настройка шаблонов</a>
+                <a class="nav-link" href="./template">Настройка шаблона</a>
             </li>
             <li class="nav-item mr-5"></li>
             <li class="nav-item mr-1">
