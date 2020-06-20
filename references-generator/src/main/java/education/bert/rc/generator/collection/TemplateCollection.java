@@ -10,8 +10,17 @@ import java.util.List;
 public class TemplateCollection {
 
     private final List<Template> templates = new ArrayList<>();
+    private final Template defaultTemplate;
 
     public TemplateCollection() {
+        defaultTemplate = new StandardTemplate(
+                "Свой шаблон",
+                "<firstAuthor=\"Ivanov, I.I.\"> / <title> / <authors=\"I.I. Ivanov\"> // <journal>. – <year>.<vol=\" – V. ?.\"><num=\" – N. ?.\"><pages=\" – P. ?\">.",
+                "<firstAuthor=\"Ivanov, I.I.\"> / <title> / <authors=\"I.I. Ivanov\"> // <journal>. – <year>.<vol=\" – Т. ?.\"><num=\" – №. ?.\"><pages=\" – С. ?\">.",
+                "<firstAuthor=\"Ivanov, I.I.\"> / <title> / <authors=\"I.I. Ivanov\">. – <journal>, <year>.<vol=\" V. ?.\"><num=\" – N. ?.\"><pages=\" – ? p.\">.",
+                "<firstAuthor=\"Ivanov, I.I.\"> / <title> / <authors=\"I.I. Ivanov\">. – <journal>, <year>.<vol=\" Т. ?.\"><num=\" – №. ?.\"><pages=\" – ? с.\">."
+        );
+
         templates.add(new StandardTemplate(
                 "ГОСТ 7.0.5. 2008",
                 "<firstAuthor=\"Ivanov, I.I.\"> / <title> / <authors=\"I.I. Ivanov\"> // <journal>. – <year>.<vol=\" – V. ?.\"><num=\" – N. ?.\"><pages=\" – P. ?\">.",
@@ -25,5 +34,9 @@ public class TemplateCollection {
 
     public List<Template> getAll() {
         return templates;
+    }
+
+    public Template getDefaultTemplate() {
+        return defaultTemplate;
     }
 }
