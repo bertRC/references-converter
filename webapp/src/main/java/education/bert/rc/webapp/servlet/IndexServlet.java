@@ -38,8 +38,10 @@ public class IndexServlet extends HttpServlet {
         if ("convert".equals(req.getParameter("action"))) {
 
             HttpSession session = req.getSession();
-            final String inputText = req.getParameter("inputText");
+
             final String selectTemplate = req.getParameter("selectTemplate");
+            final int templateIndex = Integer.parseInt(selectTemplate);
+            final String inputText = req.getParameter("inputText");
             session.setAttribute("templateSelected", selectTemplate);
             session.setAttribute("plainInputText", inputText);
 
@@ -47,7 +49,6 @@ public class IndexServlet extends HttpServlet {
             final List<String> inputStrings = Separator.separate(inputText);
             final List<Bibliography> bibliographies = analyzer.analyze(inputStrings);
             final List<String> coloredStrings = CssColors.colorize(bibliographies);
-            final int templateIndex = Integer.parseInt(selectTemplate);
             final List<String> results = templateCollection.getAll().get(templateIndex).generate(bibliographies);
             final String resultsInLine = Separator.join(results, lineSeparator);
 
