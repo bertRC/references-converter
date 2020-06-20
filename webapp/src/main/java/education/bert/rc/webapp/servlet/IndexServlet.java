@@ -35,14 +35,21 @@ public class IndexServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        HttpSession session = req.getSession();
-        final String inputText = req.getParameter("inputText");
-        if (!inputText.isEmpty()) {
+        if ("convert".equals(req.getParameter("action"))) {
+
+            HttpSession session = req.getSession();
+
+            final String selectTemplate = req.getParameter("selectTemplate");
+            final int templateIndex = Integer.parseInt(selectTemplate);
+            final String inputText = req.getParameter("inputText");
+            session.setAttribute("templateSelected", selectTemplate);
+            session.setAttribute("plainInputText", inputText);
+
             final String lineSeparator = Separator.getLineSeparator(inputText);
             final List<String> inputStrings = Separator.separate(inputText);
             final List<Bibliography> bibliographies = analyzer.analyze(inputStrings);
             final List<String> coloredStrings = CssColors.colorize(bibliographies);
-            final List<String> results = templateCollection.getAll().get(0).generate(bibliographies);
+            final List<String> results = templateCollection.getAll().get(templateIndex).generate(bibliographies);
             final String resultsInLine = Separator.join(results, lineSeparator);
 
             session.setAttribute("lineSeparator", lineSeparator);
@@ -50,7 +57,8 @@ public class IndexServlet extends HttpServlet {
             session.setAttribute("coloredStrings", coloredStrings);
             session.setAttribute("results", results);
             session.setAttribute("resultsInLine", resultsInLine);
+
+            resp.sendRedirect("/result");
         }
-        resp.sendRedirect("/result");
     }
 }
