@@ -1,5 +1,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="education.bert.rc.utils.repository.Bibliography" %>
+<%@ page import="education.bert.rc.generator.collection.TemplateCollection" %>
+<%@ page import="education.bert.rc.generator.templates.Template" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -8,6 +10,16 @@
     <title>References Converter</title>
 </head>
 <body>
+
+<%
+    TemplateCollection templateCollection =
+            (TemplateCollection) getServletConfig().getServletContext().getAttribute("templateCollection");
+    String templateSelected = (String) session.getAttribute("templateSelected");
+    List<Template> templateList = null;
+    if (templateCollection != null) {
+        templateList = templateCollection.getAll();
+    }
+%>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-darkblue sticky-top">
     <a class="navbar-brand mb-0 h1" href="./">RC</a>
@@ -28,15 +40,22 @@
             </li>
             <li class="nav-item mr-5"></li>
             <li class="nav-item mr-1">
-                <select class="custom-select" aria-label="" disabled>
-                    <option selected>Шаблоны не доступны</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                </select>
+                <form class="mb-0" method="POST" action="<%= request.getContextPath() %>/result?action=convert"
+                      id="convertForm">
+                    <select class="custom-select" aria-label="" name="selectTemplate">
+                        <% if (templateList != null) {
+                            for (int i = 0; i < templateList.size(); i++) {
+                        %>
+                        <option value="<%=i%>" <%=String.valueOf(i).equals(templateSelected) ? "selected" : ""%>><%=templateList.get(i).getName()%>
+                        </option>
+                        <% }
+                        } %>
+                    </select>
+                </form>
             </li>
             <li class="nav-item mr-1">
-                <button class="btn btn-icon" type="button" data-toggle="tooltip" title="Преобразовать" disabled>
+                <button class="btn btn-icon" type="submit" form="convertForm" data-toggle="tooltip"
+                        title="Преобразовать">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                          class="feather feather-play">
@@ -45,7 +64,8 @@
                 </button>
             </li>
             <li class="nav-item">
-                <button class="btn btn-icon" type="button" onclick="copyFunction()" data-toggle="tooltip" title="Копировать результаты в буфер обмена">
+                <button class="btn btn-icon" type="button" onclick="copyFunction()" data-toggle="tooltip"
+                        title="Копировать результаты в буфер обмена">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                          class="feather feather-copy">
@@ -57,7 +77,8 @@
         </ul>
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="https://github.com/bertRC/references-converter" data-toggle="tooltip" title="Наш проект на Github">
+                <a class="nav-link" href="https://github.com/bertRC/references-converter" data-toggle="tooltip"
+                   title="Наш проект на Github">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                          class="feather feather-github">
