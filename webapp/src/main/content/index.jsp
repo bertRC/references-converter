@@ -39,7 +39,7 @@
             </li>
             <li class="nav-item mr-5"></li>
             <li class="nav-item mr-1">
-                <form class="mb-0" method="POST" action="<%= request.getContextPath() %>/?action=convert"
+                <form class="mb-0" method="POST" action="./?action=convert"
                       id="convertForm">
                     <select class="custom-select" aria-label="" name="selectTemplate">
                         <% if (templateList != null) {
