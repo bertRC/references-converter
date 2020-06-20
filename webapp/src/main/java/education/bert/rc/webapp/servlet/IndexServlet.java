@@ -35,13 +35,14 @@ public class IndexServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        HttpSession session = req.getSession();
-        final String inputText = req.getParameter("inputText");
-        final String selectTemplate = req.getParameter("selectTemplate");
-        session.setAttribute("templateSelected", selectTemplate);
-        session.setAttribute("plainInputText", inputText);
+        if ("convert".equals(req.getParameter("action"))) {
 
-        if (!inputText.isEmpty()) {
+            HttpSession session = req.getSession();
+            final String inputText = req.getParameter("inputText");
+            final String selectTemplate = req.getParameter("selectTemplate");
+            session.setAttribute("templateSelected", selectTemplate);
+            session.setAttribute("plainInputText", inputText);
+
             final String lineSeparator = Separator.getLineSeparator(inputText);
             final List<String> inputStrings = Separator.separate(inputText);
             final List<Bibliography> bibliographies = analyzer.analyze(inputStrings);
@@ -55,7 +56,8 @@ public class IndexServlet extends HttpServlet {
             session.setAttribute("coloredStrings", coloredStrings);
             session.setAttribute("results", results);
             session.setAttribute("resultsInLine", resultsInLine);
+
+            resp.sendRedirect("/result");
         }
-        resp.sendRedirect("/result");
     }
 }
