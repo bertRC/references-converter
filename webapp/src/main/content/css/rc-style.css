@@ -4,7 +4,7 @@
 
 .btn-icon {
     height: 38px;
-    color: lightgray;
+    color: white;
     background-color: #023980;
     border: none;
     outline: none;
@@ -12,7 +12,7 @@
 
 .btn-icon:focus {
     height: 38px;
-    color: lightgray;
+    color: white;
     background-color: #023980;
     border: none;
     outline: none;
