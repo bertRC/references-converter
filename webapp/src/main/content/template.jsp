@@ -78,6 +78,52 @@
     </div>
 </nav>
 
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm">
+            <form class="mt-3">
+                <div class="form-group">
+                    <label for="articleLatinTemplate">Формат статьи (англ.)</label>
+                    <textarea class="form-control" id="articleLatinTemplate" rows="2"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="articleCyrillicTemplate">Формат статьи (рус.)</label>
+                    <textarea class="form-control" id="articleCyrillicTemplate" rows="2"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="bookLatinTemplate">Формат книги (англ.)</label>
+                    <textarea class="form-control" id="bookLatinTemplate" rows="2"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="bookCyrillicTemplate">Формат книги (рус.)</label>
+                    <textarea class="form-control" id="bookCyrillicTemplate" rows="2"></textarea>
+                </div>
+                <button type="submit" class="btn btn-icon">Сохранить и применить</button>
+            </form>
+        </div>
+        <div class="col-sm">
+            <form class="mt-3">
+                <div class="form-group">
+                    <label for="articleLatinTemplateExample">Пример статьи (англ.)</label>
+                    <textarea class="form-control" id="articleLatinTemplateExample" rows="2" readonly></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="articleCyrillicTemplateExample">Пример статьи (рус.)</label>
+                    <textarea class="form-control" id="articleCyrillicTemplateExample" rows="2" readonly></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="bookLatinTemplateExample">Пример книги (англ.)</label>
+                    <textarea class="form-control" id="bookLatinTemplateExample" rows="2" readonly></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="bookCyrillicTemplateExample">Пример книги (рус.)</label>
+                    <textarea class="form-control" id="bookCyrillicTemplateExample" rows="2" readonly></textarea>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <%@ include file="bootstrap-scripts.jsp" %>
 </body>
 </html>
